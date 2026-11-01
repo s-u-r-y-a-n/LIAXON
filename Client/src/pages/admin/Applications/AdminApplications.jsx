@@ -214,7 +214,12 @@ const AdminApplications = () => {
             }
         }
         if (app.resume?.fileName) {
-            return `http://localhost:5000/uploads/${app.resume.fileName}`;
+            const serverBase =
+                import.meta.env.VITE_SERVER_URL ||
+                (import.meta.env.VITE_PUBLIC_API_URL
+                    ? import.meta.env.VITE_PUBLIC_API_URL.replace(/\/api\/v1\/?$/, "")
+                    : "https://liaxon.onrender.com");
+            return `${serverBase}/uploads/${app.resume.fileName}`;
         }
         return null;
     };
