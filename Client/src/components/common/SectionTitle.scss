@@ -1,0 +1,50 @@
+@use '../../styles/variables' as *;
+
+.section-title-component {
+  margin-bottom: 48px;
+
+  &.centered {
+    text-align: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .badge-tag {
+    display: inline-block;
+    font-size: 0.775rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 14px;
+    background: $color-blue-light;
+    color: $color-blue-primary;
+    border-radius: $radius-full;
+    margin-bottom: 14px;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+  }
+
+  .main-heading {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: $color-text-main;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+
+    @media (max-width: 768px) {
+      font-size: 1.85rem;
+    }
+  }
+
+  .sub-heading {
+    font-size: 1.05rem;
+    color: $color-text-subtle;
+    line-height: 1.6;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+    }
+  }
+}

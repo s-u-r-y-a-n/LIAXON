@@ -1,0 +1,341 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.service-detail-page {
+  .detail-hero-banner {
+    background: $gradient-hero;
+    color: #ffffff;
+    padding: 72px 0 84px;
+
+    .hero-container {
+      @include container;
+
+      .breadcrumb-trail {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: #94a3b8;
+        margin-bottom: 20px;
+
+        a {
+          color: #94a3b8;
+          text-decoration: none;
+
+          &:hover {
+            color: #38bdf8;
+          }
+        }
+
+        span.current {
+          color: #ffffff;
+          font-weight: 600;
+        }
+      }
+
+      .badge-tag {
+        display: inline-block;
+        font-size: 0.775rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 5px 14px;
+        background: rgba(37, 99, 235, 0.2);
+        color: #38bdf8;
+        border-radius: $radius-full;
+        margin-bottom: 16px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+      }
+
+      h1 {
+        font-size: 2.75rem;
+        font-weight: 900;
+        letter-spacing: -0.025em;
+        margin-bottom: 8px;
+        max-width: 900px;
+        line-height: 1.2;
+
+        @media (max-width: 768px) {
+          font-size: 2rem;
+        }
+      }
+
+      .hero-tagline-sub {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #38bdf8;
+        margin-bottom: 16px;
+      }
+
+      .hero-sub {
+        font-size: 1.15rem;
+        color: #cbd5e1;
+        max-width: 780px;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+
+  .detail-body-section {
+    padding: 80px 0 100px;
+    background: #ffffff;
+
+    .body-container {
+      @include container;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 56px;
+
+      @media (max-width: 960px) {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .main-practice-content {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+
+        .content-block {
+          .block-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: $color-navy;
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+          }
+
+          p {
+            font-size: 1rem;
+            color: $color-text-muted;
+            line-height: 1.75;
+            margin-bottom: 16px;
+          }
+
+          // What We Offer Grid
+          .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+
+            @media (max-width: 640px) {
+              grid-template-columns: 1fr;
+            }
+
+            .offering-card {
+              background: #F8FAFC;
+              border: 1px solid #E2E8F0;
+              border-radius: 12px;
+              padding: 20px 18px;
+              transition: transform 0.2s, box-shadow 0.2s;
+
+              &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+              }
+
+              .offering-header {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: 8px;
+
+                .check-icon {
+                  color: $color-blue-primary;
+                  font-size: 20px;
+                }
+
+                h4 {
+                  font-size: 1rem;
+                  font-weight: 700;
+                  color: $color-navy;
+                  margin: 0;
+                }
+              }
+
+              p {
+                font-size: 0.875rem;
+                color: #64748B;
+                line-height: 1.5;
+                margin: 0;
+              }
+            }
+          }
+
+          // Process Timeline
+          .process-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            .process-step-item {
+              display: flex;
+              align-items: center;
+
+              gap: 16px;
+              background: #ffffff;
+              border: 1px solid #E2E8F0;
+              border-radius: 12px;
+              padding: 16px 20px;
+
+              .step-circle {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: $color-blue-primary;
+                color: #ffffff;
+                font-weight: 800;
+                font-size: 0.9rem;
+                @include flex-center;
+                flex-shrink: 0;
+              }
+
+              .step-details {
+                width: 100%;
+
+                h4 {
+                  font-size: 1.05rem;
+                  font-weight: 700;
+                  color: $color-navy;
+                  margin: 0 0 4px 0;
+                }
+
+                p {
+                  font-size: 0.9rem;
+                  color: #64748B;
+                  line-height: 1.5;
+                  margin: 0;
+                }
+              }
+            }
+          }
+
+          // Benefits Checklist
+          .benefits-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+
+            @media (max-width: 600px) {
+              grid-template-columns: 1fr;
+            }
+
+            li {
+              display: flex;
+              align-items: flex-start;
+              gap: 12px;
+              font-size: 0.95rem;
+              color: $color-navy;
+              font-weight: 600;
+              line-height: 1.5;
+
+              .check-icon {
+                color: #10B981;
+                font-size: 20px;
+                flex-shrink: 0;
+                margin-top: 1px;
+              }
+            }
+          }
+
+          // Audience Pill Container
+          .audience-pill-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .audience-pill {
+              background: #EFF6FF;
+              border-left: 4px solid $color-blue-primary;
+              padding: 12px 18px;
+              border-radius: 0 8px 8px 0;
+              font-size: 0.95rem;
+              color: $color-navy;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      .practice-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+
+        .cta-sidebar-card {
+          background: $gradient-hero;
+          color: #ffffff;
+          padding: 36px 30px;
+          border-radius: $radius-lg;
+          box-shadow: $shadow-xl;
+
+          h3 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+          }
+
+          p {
+            font-size: 0.925rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 24px;
+          }
+
+          .request-btn {
+            background: $gradient-accent;
+            color: #ffffff;
+            font-weight: 700;
+            width: 100%;
+            padding: 12px;
+          }
+        }
+
+        .contact-quick-card {
+          background: $color-bg-light;
+          border: 1px solid $color-border-light;
+          padding: 28px 26px;
+          border-radius: $radius-lg;
+
+          h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: $color-navy;
+            margin-bottom: 16px;
+          }
+
+          .quick-contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+
+            li {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-size: 0.9rem;
+              color: #475569;
+
+              a {
+                color: $color-blue-primary;
+                text-decoration: none;
+                font-weight: 600;
+
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

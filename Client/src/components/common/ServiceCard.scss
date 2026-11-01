@@ -1,0 +1,126 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.service-card-item {
+  background: $color-bg-white;
+  border: 1px solid $color-border-light;
+  border-radius: $radius-lg;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  @include card-hover;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: $gradient-accent;
+    opacity: 0;
+    transition: opacity 0.28s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+
+    .icon-wrapper {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      background: $color-blue-light;
+      color: $color-blue-primary;
+      @include flex-center;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.12);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .category-chip {
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: $color-text-subtle;
+      background: $color-border-subtle;
+      padding: 4px 10px;
+      border-radius: $radius-full;
+    }
+  }
+
+  &:hover .card-top .icon-wrapper {
+    background: $color-blue-primary;
+    color: #ffffff;
+  }
+
+  .service-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $color-text-main;
+    margin-bottom: 12px;
+    line-height: 1.35;
+  }
+
+  .service-desc {
+    font-size: 0.925rem;
+    color: $color-text-subtle;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .deliverables-preview {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    li {
+      font-size: 0.825rem;
+      color: $color-text-muted;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &::before {
+        content: '✓';
+        color: $color-emerald;
+        font-weight: 800;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .card-action {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid $color-border-subtle;
+
+    .learn-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $color-blue-primary;
+      text-decoration: none;
+      transition: gap 0.2s ease, color 0.2s ease;
+
+      &:hover {
+        gap: 10px;
+        color: $color-blue-hover;
+      }
+    }
+  }
+}

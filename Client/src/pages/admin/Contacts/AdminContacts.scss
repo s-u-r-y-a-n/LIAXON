@@ -1,0 +1,77 @@
+.admin-contacts-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .contacts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    .header-info {
+      .page-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #0f172a;
+        letter-spacing: -0.02em;
+      }
+
+      .page-sub {
+        color: #64748b;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .contacts-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+
+    .toolbar-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #f1f5f9;
+
+      .search-box {
+        max-width: 340px;
+        flex-grow: 1;
+      }
+
+      .filter-box {
+        min-width: 160px;
+      }
+    }
+
+    .contacts-table {
+      .sender-cell {
+        display: flex;
+        flex-direction: column;
+
+        .sender-name {
+          font-weight: 600;
+          color: #0f172a;
+        }
+
+        .sender-email {
+          font-size: 0.8rem;
+          color: #64748b;
+        }
+      }
+
+      .subject-cell {
+        max-width: 260px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

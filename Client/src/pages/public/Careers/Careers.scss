@@ -1,0 +1,463 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.careers-page {
+  // 1. Hero Banner
+  .careers-hero-banner {
+    background: $gradient-hero;
+    color: #ffffff;
+    padding: 90px 0 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    .hero-container {
+      @include container;
+      max-width: 860px;
+      position: relative;
+      z-index: 2;
+
+      .hero-tag {
+        display: inline-block;
+        background: rgba(37, 99, 235, 0.2);
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        color: #38bdf8;
+        font-size: 0.825rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 6px 18px;
+        border-radius: $radius-full;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 3rem;
+        font-weight: 900;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-bottom: 12px;
+
+        @media (max-width: 600px) {
+          font-size: 2.25rem;
+        }
+      }
+
+      .hero-tagline {
+        font-size: 1.35rem;
+        color: #38bdf8;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .hero-intro {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        color: #cbd5e1;
+        margin-bottom: 32px;
+      }
+
+      .hero-cta-box {
+        .hero-apply-btn {
+          background: $color-blue-primary;
+          color: #ffffff;
+          font-weight: 700;
+          padding: 12px 32px;
+          border-radius: 8px;
+          font-size: 1rem;
+
+          &:hover {
+            background: $color-blue-hover;
+          }
+        }
+      }
+    }
+  }
+
+  // 2. Why Work With Us
+  .why-work-section {
+    padding: 96px 0;
+    background: #ffffff;
+
+    .why-container {
+      @include container;
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+
+        @media (max-width: 1024px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 560px) {
+          grid-template-columns: 1fr;
+        }
+
+        .why-card {
+          background: #ffffff;
+          border: 1px solid $color-border-light;
+          border-radius: $radius-lg;
+          padding: 32px 24px;
+          text-align: center;
+          @include card-hover;
+
+          .why-icon {
+            font-size: 2.5rem;
+            color: $color-blue-primary;
+            margin-bottom: 16px;
+            @include flex-center;
+          }
+
+          h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: $color-navy;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 0.925rem;
+            color: $color-text-subtle;
+            line-height: 1.55;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // 3. Future Opportunities Grid
+  .opportunities-section {
+    padding: 96px 0;
+    background: $color-bg-light;
+
+    .opp-container {
+      @include container;
+
+      .opportunities-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+
+        @media (max-width: 1024px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 640px) {
+          grid-template-columns: 1fr;
+        }
+
+        .opportunity-card {
+          background: #ffffff;
+          border: 1px solid $color-border-light;
+          border-radius: 14px;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          @include card-hover;
+
+          .role-meta {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+
+            .badge-role {
+              font-size: 0.75rem;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+              color: $color-blue-primary;
+              background: #eff6ff;
+              padding: 4px 10px;
+              border-radius: 12px;
+            }
+
+            .badge-type {
+              font-size: 0.72rem;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 0.04em;
+              color: #0f766e;
+              background: #ccfbf1;
+              padding: 4px 8px;
+              border-radius: 12px;
+            }
+          }
+
+          .role-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: $color-navy;
+            margin: 0 0 6px 0;
+            line-height: 1.35;
+          }
+
+          .role-location {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin: 0 0 6px 0;
+          }
+
+          .role-exp {
+            font-size: 0.825rem;
+            color: #475569;
+            margin: 0 0 8px 0;
+
+            strong {
+              color: $color-navy;
+              font-weight: 700;
+            }
+          }
+
+          .role-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin: 0 0 18px 0;
+          }
+
+          .role-apply-btn {
+            border-color: #cbd5e1;
+            color: $color-navy;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: none;
+
+            &:hover {
+              border-color: $color-blue-primary;
+              color: $color-blue-primary;
+              background-color: #eff6ff;
+            }
+          }
+        }
+      }
+
+      .openings-note-box {
+        margin-top: 40px;
+        text-align: center;
+        background: #ffffff;
+        border: 1px dashed #cbd5e1;
+        border-radius: 12px;
+        padding: 24px 20px;
+
+        p {
+          font-size: 1rem;
+          color: #475569;
+          font-weight: 500;
+          margin-bottom: 12px;
+        }
+
+        .hr-email-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          color: $color-blue-primary;
+          font-weight: 700;
+          text-decoration: none;
+          font-size: 1.05rem;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  // 4. Ten Core Values Grid
+  .core-values-section {
+    padding: 96px 0;
+    background: #ffffff;
+
+    .values-container {
+      @include container;
+
+      .ten-values-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        margin-top: 48px;
+
+        @media (max-width: 1100px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 768px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 480px) {
+          grid-template-columns: 1fr;
+        }
+
+        .val-card {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 24px 18px;
+          position: relative;
+          @include card-hover;
+
+          .val-index {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: rgba(37, 99, 235, 0.25);
+            margin-bottom: 8px;
+          }
+
+          h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: $color-navy;
+            margin-bottom: 8px;
+          }
+
+          p {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.5;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // 5. Our Culture
+  .culture-story-section {
+    padding: 88px 0;
+    background: $color-navy-dark;
+    color: #ffffff;
+
+    .culture-container {
+      @include container;
+      max-width: 860px;
+      text-align: center;
+
+      .culture-content-box {
+        .badge-culture {
+          display: inline-block;
+          background: rgba(56, 189, 248, 0.2);
+          color: #38bdf8;
+          font-size: 0.825rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          padding: 6px 18px;
+          border-radius: $radius-full;
+          margin-bottom: 20px;
+        }
+
+        h2 {
+          font-size: 2.35rem;
+          font-weight: 900;
+          color: #ffffff;
+          margin-bottom: 24px;
+
+          @media (max-width: 600px) {
+            font-size: 1.85rem;
+          }
+        }
+
+        .culture-p1 {
+          font-size: 1.15rem;
+          line-height: 1.7;
+          color: #e2e8f0;
+          margin-bottom: 16px;
+        }
+
+        .culture-p2 {
+          font-size: 1.05rem;
+          line-height: 1.65;
+          color: #94a3b8;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  // 6. How to Apply Steps
+  .how-to-apply-section {
+    padding: 96px 0;
+    background: #ffffff;
+
+    .apply-steps-container {
+      @include container;
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+
+        @media (max-width: 1024px) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 600px) {
+          grid-template-columns: 1fr;
+        }
+
+        .step-card {
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 28px 22px;
+          position: relative;
+          @include card-hover;
+
+          .step-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: $color-blue-primary;
+            font-size: 0.775rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 6px;
+            margin-bottom: 14px;
+          }
+
+          h4 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: $color-navy;
+            margin-bottom: 10px;
+          }
+
+          p {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.55;
+            margin: 0;
+          }
+        }
+      }
+
+      .apply-cta-footer {
+        margin-top: 48px;
+        text-align: center;
+
+        .apply-now-btn {
+          background: $color-blue-primary;
+          color: #ffffff;
+          font-weight: 700;
+          padding: 14px 36px;
+          border-radius: 8px;
+          font-size: 1rem;
+
+          &:hover {
+            background: $color-blue-hover;
+          }
+        }
+      }
+    }
+  }
+}

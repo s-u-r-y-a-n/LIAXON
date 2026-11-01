@@ -1,0 +1,118 @@
+.admin-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    .header-info {
+      .page-title {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #0f172a;
+        letter-spacing: -0.02em;
+      }
+
+      .page-sub {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .profile-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .profile-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+
+    .card-header-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f1f5f9;
+
+      .icon-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: #f1f5f9;
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .header-text {
+        h3 {
+          font-size: 1.15rem;
+          font-weight: 700;
+          color: #0f172a;
+          margin: 0;
+        }
+
+        p {
+          font-size: 0.85rem;
+          color: #64748b;
+          margin: 2px 0 0 0;
+        }
+      }
+    }
+
+    .form-fields-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+
+      @media (min-width: 600px) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .password-fields-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  .form-actions-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    padding-top: 8px;
+
+    .save-btn {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 10px 24px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-transform: none;
+      font-size: 0.95rem;
+
+      &:hover {
+        background: #1e293b;
+      }
+    }
+  }
+}
