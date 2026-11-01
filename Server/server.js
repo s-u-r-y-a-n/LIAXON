@@ -1,4 +1,6 @@
 import express from "express";
+import http from "http";
+import { Server as SocketIOServer } from "socket.io";
 import cors from "cors";
 import "dotenv/config";
 import connectDB from "./config/mongodb.js";
@@ -10,6 +12,25 @@ import publicRoutes from "./routes/publicRoutes.js";
 import { seedInitialAdmin } from "./utils/seedAdmin.js";
 
 const app = express();
+const server = http.createServer(app);
+
+// SOCKET.IO REAL-TIME ENGINE
+const io = new SocketIOServer(server, {
+    cors: {
+        origin: true,
+        credentials: true,
+    },
+});
+
+app.set("io", io);
+
+io.on("connection", (socket) => {
+    console.log(`[Socket.io] Admin/Client connected: ${socket.id}`);
+
+    socket.on("disconnect", () => {
+        console.log(`[Socket.io] Admin/Client disconnected: ${socket.id}`);
+    });
+});
 
 // CONSTANTS
 const PORT = process.env.PORT || 5000;
@@ -78,4 +99,4 @@ function listenCallBack() {
     console.log(`APP IS RUNNING ON PORT: ${PORT}`);
 }
 
-app.listen(PORT, listenCallBack);
+server.listen(PORT, listenCallBack);

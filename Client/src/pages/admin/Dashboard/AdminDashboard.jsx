@@ -16,6 +16,7 @@ import {
     Alert,
     IconButton,
     Tooltip,
+    Snackbar,
 } from "@mui/material";
 import MailRoundedIcon from "@mui/icons-material/MailRounded";
 import WorkRoundedIcon from "@mui/icons-material/WorkRounded";
@@ -26,6 +27,7 @@ import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import { dashboardApi } from "../../../services/adminApi.js";
 import { useAuth } from "../../../context/AuthContext.jsx";
+import { useSocketEvent } from "../../../hooks/useSocket.js";
 import "./AdminDashboard.scss";
 
 const AdminDashboard = () => {
@@ -44,6 +46,46 @@ const AdminDashboard = () => {
     const [recentApplications, setRecentApplications] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [realtimeNotification, setRealtimeNotification] = useState({
+        open: false,
+        message: "",
+        sender: "",
+    });
+
+    // Real-time Socket.io listener for new incoming contact inquiries
+    const handleNewInquiry = (newInquiry) => {
+        if (!newInquiry) return;
+
+        // Increment stats immediately without page refresh
+        setStats((prev) => ({
+            ...prev,
+            totalInquiries: (prev.totalInquiries || 0) + 1,
+            unreadInquiries: (prev.unreadInquiries || 0) + 1,
+        }));
+
+        // Prepend new inquiry to recent messages table (keep top 5)
+        setRecentInquiries((prev) => {
+            const inquiryId = newInquiry._id || newInquiry.id;
+            const exists = prev.some((item) => (item._id || item.id) === inquiryId);
+            if (exists) return prev;
+            return [newInquiry, ...prev.slice(0, 4)];
+        });
+
+        // Trigger real-time toast alert
+        const sender =
+            newInquiry.fullName ||
+            `${newInquiry.firstName || ""} ${newInquiry.lastName || ""}`.trim() ||
+            "A visitor";
+
+        setRealtimeNotification({
+            open: true,
+            message: `New inquiry: "${newInquiry.subject || newInquiry.inquiryType || "General Inquiry"}"`,
+            sender,
+        });
+    };
+
+    useSocketEvent("new_contact_inquiry", handleNewInquiry);
+    useSocketEvent("newContactInquiry", handleNewInquiry);
 
     const fetchDashboardData = async () => {
         try {
@@ -417,6 +459,56 @@ const AdminDashboard = () => {
                     </TableContainer>
                 </Card>
             </Box>
+
+            {/* Real-time Socket.io Notification Toast */}
+            <Snackbar
+                open={realtimeNotification.open}
+                autoHideDuration={6000}
+                onClose={() => setRealtimeNotification((prev) => ({ ...prev, open: false }))}
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            >
+                <Alert
+                    onClose={() => setRealtimeNotification((prev) => ({ ...prev, open: false }))}
+                    severity="info"
+                    variant="filled"
+                    sx={{
+                        width: "100%",
+                        backgroundColor: "#0F172A",
+                        color: "#FFFFFF",
+                        boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.4)",
+                        borderRadius: 2,
+                        alignItems: "center",
+                        "& .MuiAlert-icon": { color: "#38BDF8" },
+                    }}
+                    action={
+                        <Button
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                setRealtimeNotification((prev) => ({ ...prev, open: false }));
+                                navigate("/admin/contacts");
+                            }}
+                            sx={{
+                                color: "#38BDF8",
+                                fontWeight: 700,
+                                textTransform: "none",
+                                ml: 1,
+                            }}
+                        >
+                            View
+                        </Button>
+                    }
+                >
+                    <Box>
+                        <Typography sx={{ fontWeight: 700, fontSize: "0.875rem" }}>
+                            {realtimeNotification.sender}
+                        </Typography>
+                        <Typography sx={{ fontSize: "0.8rem", opacity: 0.9 }}>
+                            {realtimeNotification.message}
+                        </Typography>
+                    </Box>
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };

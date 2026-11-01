@@ -38,6 +38,7 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import { contactsApi } from "../../../services/adminApi.js";
+import { useSocketEvent } from "../../../hooks/useSocket.js";
 import "./AdminContacts.scss";
 
 const STATUS_OPTIONS = [
@@ -86,6 +87,31 @@ const AdminContacts = () => {
     const showSnackbar = (message, severity = "success") => {
         setSnackbar({ open: true, message, severity });
     };
+
+    // Real-time listener: prepend newly submitted inquiry to table immediately
+    const handleNewInquiry = (newInquiry) => {
+        if (!newInquiry) return;
+
+        setContacts((prev) => {
+            const id = newInquiry._id || newInquiry.id;
+            const exists = prev.some((item) => (item._id || item.id) === id);
+            if (exists) return prev;
+            return [newInquiry, ...prev];
+        });
+
+        const senderName =
+            newInquiry.fullName ||
+            `${newInquiry.firstName || ""} ${newInquiry.lastName || ""}`.trim() ||
+            "A visitor";
+
+        showSnackbar(
+            `Real-time lead received from ${senderName} (${newInquiry.inquiryType || "General"})`,
+            "info",
+        );
+    };
+
+    useSocketEvent("new_contact_inquiry", handleNewInquiry);
+    useSocketEvent("newContactInquiry", handleNewInquiry);
 
     const fetchContacts = async () => {
         try {

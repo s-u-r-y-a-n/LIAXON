@@ -75,7 +75,7 @@
 
     .header-inner {
       // @include container;
-      margin: 0px 70px;
+      margin: 0 clamp(16px, 5vw, 70px);
       display: flex;
       justify-content: space-between;
       align-items: center;

@@ -620,6 +620,14 @@ router.post("/contact", async (req, res) => {
 
         await inquiry.save();
 
+        // Broadcast real-time Socket.io event to connected admin clients
+        const io = req.app.get("io");
+        if (io) {
+            const payload = inquiry.toJSON ? inquiry.toJSON() : inquiry;
+            io.emit("new_contact_inquiry", payload);
+            io.emit("newContactInquiry", payload);
+        }
+
         // Trigger email notification to the respective department head
         sendContactNotificationEmail(inquiry).catch((err) => {
             console.error("[Email Notification Trigger Error]:", err.message);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Outlet, NavLink, useNavigate, useLocation } from "react-router-dom";
 import {
     Box,
@@ -22,6 +22,9 @@ import {
     DialogContent,
     DialogContentText,
     DialogActions,
+    Badge,
+    Snackbar,
+    Alert,
 } from "@mui/material";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
@@ -33,6 +36,7 @@ import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
 import { useAuth } from "../context/AuthContext.jsx";
+import { useSocketEvent } from "../hooks/useSocket.js";
 import "./AdminLayout.scss";
 
 const DRAWER_WIDTH = 260;
@@ -74,6 +78,46 @@ const AdminLayout = () => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+
+    // Real-time Contact Inquiries state
+    const [unreadContactsCount, setUnreadContactsCount] = useState(0);
+    const [toast, setToast] = useState({ open: false, sender: "", subject: "" });
+
+    // Reset unread count when viewing contacts
+    useEffect(() => {
+        if (location.pathname.startsWith("/admin/contacts")) {
+            setUnreadContactsCount(0);
+        }
+    }, [location.pathname]);
+
+    // Handle real-time incoming contact inquiry
+    const handleNewInquiry = (inquiry) => {
+        if (!inquiry) return;
+
+        if (!location.pathname.startsWith("/admin/contacts")) {
+            setUnreadContactsCount((prev) => prev + 1);
+        }
+
+        // Show global toast if admin is not already on Dashboard or Contacts page
+        if (
+            !location.pathname.startsWith("/admin/dashboard") &&
+            !location.pathname.startsWith("/admin/contacts")
+        ) {
+            const sender =
+                inquiry.fullName ||
+                `${inquiry.firstName || ""} ${inquiry.lastName || ""}`.trim() ||
+                "A visitor";
+
+            setToast({
+                open: true,
+                sender,
+                subject: inquiry.subject || inquiry.inquiryType || "Contact Inquiry",
+            });
+        }
+    };
+
+    useSocketEvent("new_contact_inquiry", handleNewInquiry);
+    useSocketEvent("newContactInquiry", handleNewInquiry);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -135,7 +179,24 @@ const AdminLayout = () => {
                                 }}
                             >
                                 <ListItemIcon className="nav-icon">
-                                    {item.icon}
+                                    {item.path === "/admin/contacts" && unreadContactsCount > 0 ? (
+                                        <Badge
+                                            badgeContent={unreadContactsCount}
+                                            color="error"
+                                            max={99}
+                                            sx={{
+                                                "& .MuiBadge-badge": {
+                                                    fontSize: "0.7rem",
+                                                    height: 18,
+                                                    minWidth: 18,
+                                                },
+                                            }}
+                                        >
+                                            {item.icon}
+                                        </Badge>
+                                    ) : (
+                                        item.icon
+                                    )}
                                 </ListItemIcon>
                                 <ListItemText
                                     primary={item.label}
@@ -336,6 +397,56 @@ const AdminLayout = () => {
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            {/* Global Real-time Lead Notification Toast */}
+            <Snackbar
+                open={toast.open}
+                autoHideDuration={6000}
+                onClose={() => setToast((prev) => ({ ...prev, open: false }))}
+                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            >
+                <Alert
+                    onClose={() => setToast((prev) => ({ ...prev, open: false }))}
+                    severity="info"
+                    variant="filled"
+                    sx={{
+                        width: "100%",
+                        backgroundColor: "#0F172A",
+                        color: "#FFFFFF",
+                        boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.4)",
+                        borderRadius: 2,
+                        alignItems: "center",
+                        "& .MuiAlert-icon": { color: "#38BDF8" },
+                    }}
+                    action={
+                        <Button
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                setToast((prev) => ({ ...prev, open: false }));
+                                navigate("/admin/contacts");
+                            }}
+                            sx={{
+                                color: "#38BDF8",
+                                fontWeight: 700,
+                                textTransform: "none",
+                                ml: 1,
+                            }}
+                        >
+                            View
+                        </Button>
+                    }
+                >
+                    <Box>
+                        <Typography sx={{ fontWeight: 700, fontSize: "0.875rem" }}>
+                            {toast.sender}
+                        </Typography>
+                        <Typography sx={{ fontSize: "0.8rem", opacity: 0.9 }}>
+                            {toast.subject}
+                        </Typography>
+                    </Box>
+                </Alert>
+            </Snackbar>
         </Box>
     );
 };

@@ -138,6 +138,14 @@ export const createContactInquiry = async (req, res) => {
             ipAddress,
         });
 
+        // Broadcast real-time Socket.io event to connected admin clients
+        const io = req.app.get("io");
+        if (io) {
+            const payload = newInquiry.toJSON ? newInquiry.toJSON() : newInquiry;
+            io.emit("new_contact_inquiry", payload);
+            io.emit("newContactInquiry", payload);
+        }
+
         // Trigger email notification to the respective department head
         sendContactNotificationEmail(newInquiry).catch((err) => {
             console.error("[Email Notification Trigger Error]:", err.message);
