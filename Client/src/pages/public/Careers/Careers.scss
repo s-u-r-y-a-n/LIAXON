@@ -239,6 +239,22 @@
         }
       }
 
+      .no-openings-box {
+        text-align: center;
+        padding: 48px 24px;
+        background: #ffffff;
+        border: 1px solid $color-border-light;
+        border-radius: 14px;
+        margin-top: 40px;
+
+        .no-openings-text {
+          font-size: 1.05rem;
+          color: #64748b;
+          font-weight: 600;
+          margin: 0;
+        }
+      }
+
       .openings-note-box {
         margin-top: 40px;
         text-align: center;

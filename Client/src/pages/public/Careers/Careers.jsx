@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Button, Box, CircularProgress } from "@mui/material";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import WorkRoundedIcon from "@mui/icons-material/WorkRounded";
 import SchoolRoundedIcon from "@mui/icons-material/SchoolRounded";
 import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded";
@@ -10,7 +9,7 @@ import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import PageWrapper from "../../../components/common/PageWrapper.jsx";
 import SectionTitle from "../../../components/common/SectionTitle.jsx";
 import ApplyModal from "../../../components/common/ApplyModal.jsx";
-import { companyInfo, careersContent } from "../../../data/companyContent.js";
+import { careersContent } from "../../../data/companyContent.js";
 import { publicCareersApi } from "../../../services/publicApi.js";
 import "./Careers.scss";
 
@@ -23,30 +22,25 @@ const WHY_ICONS = [
 
 const Careers = () => {
     const [liveJobs, setLiveJobs] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedJob, setSelectedJob] = useState(null);
 
     useEffect(() => {
         const fetchJobs = async () => {
             try {
+                setLoading(true);
                 const response = await publicCareersApi.getJobs();
                 const list = response.data?.jobs || response.data?.data || [];
                 setLiveJobs(list);
             } catch (err) {
-                console.info("Using official career opportunities catalog:", err);
+                console.info("Could not fetch active jobs:", err);
+            } finally {
+                setLoading(false);
             }
         };
         fetchJobs();
     }, []);
-
-    const handleApplyForRole = (roleTitle) => {
-        setSelectedJob({
-            title: roleTitle,
-            domain: "Liaxon Consulting",
-            employmentType: roleTitle.includes("Internship") ? "Internship" : "Full-time",
-        });
-        setModalOpen(true);
-    };
 
     const handleGeneralApply = () => {
         setSelectedJob({
@@ -109,9 +103,13 @@ const Careers = () => {
                         subtitle="Explore our active roles, upcoming openings, and talent incubation cohorts."
                     />
 
-                    <div className="opportunities-grid">
-                        {liveJobs && liveJobs.length > 0 ? (
-                            liveJobs.map((job) => (
+                    {loading ? (
+                        <Box sx={{ display: "flex", justifyContent: "center", py: 6 }}>
+                            <CircularProgress size={36} sx={{ color: "#2563EB" }} />
+                        </Box>
+                    ) : liveJobs && liveJobs.length > 0 ? (
+                        <div className="opportunities-grid">
+                            {liveJobs.map((job) => (
                                 <div key={job._id} className="opportunity-card">
                                     <div className="role-meta">
                                         <span className="badge-role">
@@ -150,30 +148,15 @@ const Careers = () => {
                                         Apply for Role
                                     </Button>
                                 </div>
-                            ))
-                        ) : (
-                            careersContent.futureOpportunities.map((role, idx) => (
-                                <div key={idx} className="opportunity-card">
-                                    <div className="role-meta">
-                                        <span className="badge-role">
-                                            {role.includes("Internship") ? "Cohort Program" : "Professional Role"}
-                                        </span>
-                                    </div>
-                                    <h3 className="role-title">{role}</h3>
-                                    <p className="role-location">
-                                        Tholayavattam, Kanyakumari District
-                                    </p>
-                                    <Button
-                                        variant="outlined"
-                                        className="role-apply-btn"
-                                        onClick={() => handleApplyForRole(role)}
-                                    >
-                                        Apply for Role
-                                    </Button>
-                                </div>
-                            ))
-                        )}
-                    </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="no-openings-box">
+                            <p className="no-openings-text">
+                                Currently, there are no active openings.
+                            </p>
+                        </div>
+                    )}
 
                     <div className="openings-note-box">
                         <p>{careersContent.openingsNote}</p>
