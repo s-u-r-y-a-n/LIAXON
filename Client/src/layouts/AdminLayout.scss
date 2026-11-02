@@ -227,3 +227,28 @@
     }
   }
 }
+
+// Global Snackbar / Notification Toast styling
+.MuiSnackbar-root {
+  .MuiAlert-root {
+    background-color: #161616 !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7) !important;
+
+    .MuiAlert-message {
+      color: #ffffff !important;
+
+      * {
+        color: #ffffff !important;
+      }
+    }
+
+    .MuiAlert-action {
+      button {
+        color: #d4af37 !important;
+        font-weight: 700 !important;
+      }
+    }
+  }
+}

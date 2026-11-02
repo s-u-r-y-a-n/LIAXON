@@ -779,7 +779,22 @@ const AdminJobs = () => {
                 <Alert
                     onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
                     severity={snackbar.severity}
-                    sx={{ width: "100%", borderRadius: 2 }}
+                    variant="filled"
+                    sx={{
+                        width: "100%",
+                        borderRadius: 2,
+                        backgroundColor: "#161616",
+                        color: "#FFFFFF !important",
+                        border: "1px solid rgba(212, 175, 55, 0.35)",
+                        boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.6)",
+                        "& .MuiAlert-icon": {
+                            color: snackbar.severity === "error" ? "#EF4444" : "#D4AF37",
+                        },
+                        "& .MuiAlert-message": {
+                            color: "#FFFFFF !important",
+                            fontWeight: 600,
+                        },
+                    }}
                 >
                     {snackbar.message}
                 </Alert>

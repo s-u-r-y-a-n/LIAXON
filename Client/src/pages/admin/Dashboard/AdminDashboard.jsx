@@ -485,12 +485,13 @@ const AdminDashboard = () => {
                     sx={{
                         width: "100%",
                         backgroundColor: "#111111",
-                        color: "#FFFFFF",
-                        border: "1px solid rgba(212, 175, 55, 0.3)",
+                        color: "#FFFFFF !important",
+                        border: "1px solid rgba(212, 175, 55, 0.35)",
                         boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.6)",
                         borderRadius: 2,
                         alignItems: "center",
                         "& .MuiAlert-icon": { color: "#D4AF37" },
+                        "& .MuiAlert-message": { color: "#FFFFFF !important" },
                     }}
                     action={
                         <Button
@@ -501,7 +502,7 @@ const AdminDashboard = () => {
                                 navigate("/admin/contacts");
                             }}
                             sx={{
-                                color: "#D4AF37",
+                                color: "#D4AF37 !important",
                                 fontWeight: 700,
                                 textTransform: "none",
                                 ml: 1,
@@ -512,10 +513,10 @@ const AdminDashboard = () => {
                     }
                 >
                     <Box>
-                        <Typography sx={{ fontWeight: 700, fontSize: "0.875rem" }}>
+                        <Typography sx={{ fontWeight: 700, fontSize: "0.875rem", color: "#FFFFFF !important" }}>
                             {realtimeNotification.sender}
                         </Typography>
-                        <Typography sx={{ fontSize: "0.8rem", opacity: 0.9 }}>
+                        <Typography sx={{ fontSize: "0.8rem", color: "#FFFFFF !important", opacity: 0.9 }}>
                             {realtimeNotification.message}
                         </Typography>
                     </Box>
