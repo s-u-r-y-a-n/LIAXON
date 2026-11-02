@@ -61,7 +61,7 @@ const ServiceDetail = () => {
                     <Button
                         variant="contained"
                         onClick={() => navigate("/services")}
-                        sx={{ mt: 2, backgroundColor: "#0F172A" }}
+                        sx={{ mt: 2, backgroundColor: "#0B0B0B", color: "#FFFFFF", "&:hover": { backgroundColor: "#D4AF37", color: "#0B0B0B" } }}
                     >
                         Return to Services Catalog
                     </Button>
@@ -80,7 +80,7 @@ const ServiceDetail = () => {
         <PageWrapper className="service-detail-page">
             {/* Hero Header */}
             <section className="detail-hero-banner">
-                <div className="hero-container" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                <div className="hero-container" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", textAlign: "center" }}>
                     <div className="breadcrumb-trail">
                         <Link to="/">Home</Link>
                         <span>/</span>
@@ -190,9 +190,9 @@ const ServiceDetail = () => {
                                                 }}
                                             >
                                                 <AccordionSummary
-                                                    expandIcon={<ExpandMoreRoundedIcon sx={{ color: "#2563EB" }} />}
+                                                    expandIcon={<ExpandMoreRoundedIcon sx={{ color: "#D4AF37" }} />}
                                                 >
-                                                    <Typography sx={{ fontWeight: 700, color: "#0F172A" }}>
+                                                    <Typography sx={{ fontWeight: 700, color: "#0B0B0B" }}>
                                                         {f.q || f.question}
                                                     </Typography>
                                                 </AccordionSummary>
@@ -234,19 +234,19 @@ const ServiceDetail = () => {
                             <h4>Direct Business Desk</h4>
                             <ul className="quick-contact-list">
                                 <li>
-                                    <PhoneRoundedIcon sx={{ fontSize: 18, color: "#2563EB" }} />
+                                    <PhoneRoundedIcon sx={{ fontSize: 18, color: "#D4AF37" }} />
                                     <a href={`tel:${companyInfo.primaryPhone.replace(/\s+/g, "")}`}>
                                         {companyInfo.primaryPhone}
                                     </a>
                                 </li>
                                 <li>
-                                    <EmailRoundedIcon sx={{ fontSize: 18, color: "#2563EB" }} />
+                                    <EmailRoundedIcon sx={{ fontSize: 18, color: "#D4AF37" }} />
                                     <a href={`mailto:${companyInfo.primaryEmail}`}>
                                         {companyInfo.primaryEmail}
                                     </a>
                                 </li>
                                 <li>
-                                    <LocationOnRoundedIcon sx={{ fontSize: 18, color: "#2563EB" }} />
+                                    <LocationOnRoundedIcon sx={{ fontSize: 18, color: "#D4AF37" }} />
                                     <span>{companyInfo.locationShort}</span>
                                 </li>
                             </ul>

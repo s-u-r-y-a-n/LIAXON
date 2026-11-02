@@ -19,9 +19,9 @@ import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import liaxonLogo from "../assets/logo-1.jpeg";
 import "./MainLayout.scss";
 
 const SERVICES_MENU = [
@@ -81,19 +81,13 @@ const MainLayout = () => {
             {/* Main Header / Sticky Navbar */}
             <header className="public-header">
                 <div className="header-inner">
-                    {/* Brand Logo */}
-                    <Link to="/" className="brand-logo-link">
-                        <div className="logo-symbol">
-                            <ShieldRoundedIcon sx={{ fontSize: 26 }} />
-                        </div>
-                        <div className="brand-text-box">
-                            <span className="brand-name">
-                                LIAXON<span>.</span>
-                            </span>
-                            <span className="brand-caption">
-                                Business &amp; Startup Consulting
-                            </span>
-                        </div>
+                    {/* Brand Official Logo */}
+                    <Link to="/" className="brand-logo-link" aria-label="Liaxon Consulting Home">
+                        <img
+                            src={liaxonLogo}
+                            alt="Liaxon Consulting"
+                            className="brand-logo-img"
+                        />
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -128,26 +122,59 @@ const MainLayout = () => {
                                 open={Boolean(servicesAnchorEl)}
                                 onClose={handleServicesMenuClose}
                                 MenuListProps={{ onMouseLeave: handleServicesMenuClose }}
+                                className="services-dropdown-menu"
+                                slotProps={{
+                                    paper: {
+                                        className: "services-dropdown-paper",
+                                        sx: {
+                                            mt: 1.5,
+                                            borderRadius: 2.5,
+                                            boxShadow: "0 12px 32px -4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.08)",
+                                            minWidth: 240,
+                                            border: "1px solid rgba(212, 175, 55, 0.25) !important",
+                                            backgroundColor: "#141414 !important",
+                                            color: "#FFFFFF !important",
+                                        },
+                                        style: {
+                                            backgroundColor: "#141414",
+                                            color: "#FFFFFF",
+                                        },
+                                    },
+                                }}
                                 PaperProps={{
+                                    className: "services-dropdown-paper",
                                     sx: {
                                         mt: 1.5,
                                         borderRadius: 2.5,
-                                        boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.15)",
+                                        boxShadow: "0 12px 32px -4px rgba(0, 0, 0, 0.8), 0 0 15px rgba(212, 175, 55, 0.08)",
                                         minWidth: 240,
-                                        border: "1px solid #E2E8F0",
+                                        border: "1px solid rgba(212, 175, 55, 0.25) !important",
+                                        backgroundColor: "#141414 !important",
+                                        color: "#FFFFFF !important",
+                                    },
+                                    style: {
+                                        backgroundColor: "#141414",
+                                        color: "#FFFFFF",
                                     },
                                 }}
                             >
                                 <MenuItem
+                                    className="all-services-link"
                                     onClick={() => {
                                         handleServicesMenuClose();
                                         navigate("/services");
                                     }}
-                                    sx={{ fontWeight: 700, color: "#2563EB", fontSize: "0.875rem", pb: 1 }}
+                                    sx={{
+                                        fontWeight: 700,
+                                        color: "#D4AF37 !important",
+                                        fontSize: "0.875rem",
+                                        pb: 1,
+                                        "&:hover": { backgroundColor: "rgba(212, 175, 55, 0.1) !important" },
+                                    }}
                                 >
                                     All Services Overview →
                                 </MenuItem>
-                                <Divider sx={{ my: 0.5 }} />
+                                <Divider sx={{ my: 0.5, borderColor: "rgba(212, 175, 55, 0.18) !important" }} />
                                 {SERVICES_MENU.map((item) => (
                                     <MenuItem
                                         key={item.path}
@@ -155,7 +182,15 @@ const MainLayout = () => {
                                             handleServicesMenuClose();
                                             navigate(item.path);
                                         }}
-                                        sx={{ fontSize: "0.875rem", py: 1 }}
+                                        sx={{
+                                            fontSize: "0.875rem",
+                                            py: 1,
+                                            color: "#E0E0E0 !important",
+                                            "&:hover": {
+                                                color: "#D4AF37 !important",
+                                                backgroundColor: "rgba(212, 175, 55, 0.08) !important",
+                                            },
+                                        }}
                                     >
                                         {item.title}
                                     </MenuItem>
@@ -189,7 +224,7 @@ const MainLayout = () => {
                             className="mobile-menu-toggle"
                             aria-label="open mobile navigation"
                             onClick={handleDrawerToggle}
-                            sx={{ color: "#0F172A" }}
+                            sx={{ color: "#FFFFFF" }}
                         >
                             <MenuRoundedIcon />
                         </IconButton>
@@ -203,27 +238,40 @@ const MainLayout = () => {
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
                 PaperProps={{
-                    sx: { width: 300, p: 2.5, display: "flex", flexDirection: "column" },
+                    sx: {
+                        width: 300,
+                        p: 2.5,
+                        display: "flex",
+                        flexDirection: "column",
+                        backgroundColor: "#111111",
+                        color: "#FFFFFF",
+                        borderLeft: "1px solid rgba(212, 175, 55, 0.2)",
+                    },
                 }}
             >
                 <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-                    <Typography variant="h6" sx={{ fontWeight: 900, color: "#0F172A" }}>
-                        LIAXON CONSULTING
-                    </Typography>
-                    <IconButton onClick={handleDrawerToggle}>
+                    <Link to="/" onClick={() => setMobileOpen(false)} style={{ display: "inline-flex" }}>
+                        <img
+                            src={liaxonLogo}
+                            alt="Liaxon Consulting"
+                            className="drawer-logo-img"
+                            style={{ maxHeight: "42px", width: "auto", objectFit: "contain" }}
+                        />
+                    </Link>
+                    <IconButton onClick={handleDrawerToggle} sx={{ color: "#E0E0E0" }}>
                         <CloseRoundedIcon />
                     </IconButton>
                 </Box>
-                <Divider sx={{ mb: 2 }} />
+                <Divider sx={{ mb: 2, borderColor: "rgba(212, 175, 55, 0.2)" }} />
                 <List sx={{ flexGrow: 1 }}>
                     <ListItemButton component={Link} to="/" onClick={() => setMobileOpen(false)} sx={{ borderRadius: 2 }}>
-                        <ListItemText primary="Home" primaryTypographyProps={{ fontWeight: 600 }} />
+                        <ListItemText primary="Home" primaryTypographyProps={{ fontWeight: 600, color: "#FFFFFF" }} />
                     </ListItemButton>
                     <ListItemButton component={Link} to="/about" onClick={() => setMobileOpen(false)} sx={{ borderRadius: 2 }}>
-                        <ListItemText primary="About Us" primaryTypographyProps={{ fontWeight: 600 }} />
+                        <ListItemText primary="About Us" primaryTypographyProps={{ fontWeight: 600, color: "#FFFFFF" }} />
                     </ListItemButton>
                     <ListItemButton component={Link} to="/services" onClick={() => setMobileOpen(false)} sx={{ borderRadius: 2 }}>
-                        <ListItemText primary="Services Overview" primaryTypographyProps={{ fontWeight: 600 }} />
+                        <ListItemText primary="Services Overview" primaryTypographyProps={{ fontWeight: 600, color: "#D4AF37" }} />
                     </ListItemButton>
                     <Box sx={{ pl: 2 }}>
                         {SERVICES_MENU.map((item) => (
@@ -236,19 +284,19 @@ const MainLayout = () => {
                             >
                                 <ListItemText
                                     primary={`• ${item.title}`}
-                                    primaryTypographyProps={{ fontSize: "0.85rem", color: "#475569" }}
+                                    primaryTypographyProps={{ fontSize: "0.85rem", color: "#C0C0C0" }}
                                 />
                             </ListItemButton>
                         ))}
                     </Box>
                     <ListItemButton component={Link} to="/clients" onClick={() => setMobileOpen(false)} sx={{ borderRadius: 2 }}>
-                        <ListItemText primary="Clients" primaryTypographyProps={{ fontWeight: 600 }} />
+                        <ListItemText primary="Clients" primaryTypographyProps={{ fontWeight: 600, color: "#FFFFFF" }} />
                     </ListItemButton>
                     <ListItemButton component={Link} to="/careers" onClick={() => setMobileOpen(false)} sx={{ borderRadius: 2 }}>
-                        <ListItemText primary="Careers" primaryTypographyProps={{ fontWeight: 600 }} />
+                        <ListItemText primary="Careers" primaryTypographyProps={{ fontWeight: 600, color: "#FFFFFF" }} />
                     </ListItemButton>
                     <ListItemButton component={Link} to="/contact" onClick={() => setMobileOpen(false)} sx={{ borderRadius: 2 }}>
-                        <ListItemText primary="Contact Us" primaryTypographyProps={{ fontWeight: 600 }} />
+                        <ListItemText primary="Contact Us" primaryTypographyProps={{ fontWeight: 600, color: "#FFFFFF" }} />
                     </ListItemButton>
                 </List>
                 <Button
@@ -258,7 +306,16 @@ const MainLayout = () => {
                         setMobileOpen(false);
                         navigate("/contact");
                     }}
-                    sx={{ backgroundColor: "#0F172A", py: 1.2, fontWeight: 700 }}
+                    sx={{
+                        backgroundColor: "#D4AF37",
+                        color: "#0B0B0B",
+                        py: 1.2,
+                        fontWeight: 700,
+                        borderRadius: "9999px",
+                        "&:hover": {
+                            backgroundColor: "#E5C158",
+                        },
+                    }}
                 >
                     Book a Free Consultation
                 </Button>
@@ -273,18 +330,23 @@ const MainLayout = () => {
             <footer className="public-footer">
                 <div className="footer-inner">
                     <div className="footer-grid">
-                        {/* Col 1: Corporate Summary */}
+                        {/* Col 1: Corporate Summary with Official Logo */}
                         <div className="footer-col">
-                            <h3 className="col-heading" style={{ fontSize: "1.25rem" }}>
-                                LIAXON CONSULTING PVT. LTD.
-                            </h3>
+                            <Link to="/" className="footer-brand-logo-link" style={{ display: "inline-block", marginBottom: "16px" }}>
+                                <img
+                                    src={liaxonLogo}
+                                    alt="Liaxon Consulting"
+                                    className="footer-logo-img"
+                                    style={{ maxHeight: "48px", width: "auto", objectFit: "contain" }}
+                                />
+                            </Link>
                             <p className="footer-summary">
                                 Empowering businesses. Building systems. Transforming futures. Based in Tholayavattam, Kanyakumari District, Tamil Nadu, we bridge the gap between academic learning and real-world corporate execution.
                             </p>
-                            <Typography variant="body2" sx={{ color: "#0EA5E9", fontWeight: 700, mb: 1 }}>
+                            <Typography variant="body2" sx={{ color: "#D4AF37", fontWeight: 700, mb: 1 }}>
                                 Strategy Today. Success Tomorrow.
                             </Typography>
-                            <Typography variant="caption" sx={{ color: "#94A3B8", display: "block" }}>
+                            <Typography variant="caption" sx={{ color: "#A0A0A0", display: "block" }}>
                                 CIN: U70200TN2024PTC172081
                             </Typography>
                         </div>

@@ -131,10 +131,11 @@ const About = () => {
                                         sx={{
                                             width: 88,
                                             height: 88,
-                                            bgcolor: idx === 0 ? "#2563EB" : idx === 1 ? "#0EA5E9" : "#0F172A",
+                                            bgcolor: idx === 0 ? "#D4AF37" : idx === 1 ? "#C5A059" : "#0B0B0B",
+                                            color: idx === 2 ? "#FFFFFF" : "#0B0B0B",
                                             fontSize: "1.75rem",
                                             fontWeight: 800,
-                                            boxShadow: "0 8px 20px rgba(15, 23, 42, 0.15)",
+                                            boxShadow: "0 8px 20px rgba(0, 0, 0, 0.25)",
                                         }}
                                     >
                                         {leader.initials}
@@ -166,10 +167,10 @@ const About = () => {
                                         sx={{
                                             width: 64,
                                             height: 64,
-                                            bgcolor: "#F1F5F9",
-                                            color: "#2563EB",
+                                            bgcolor: "#FAF5E6",
+                                            color: "#D4AF37",
                                             fontWeight: 800,
-                                            border: "2px solid #E2E8F0",
+                                            border: "2px solid rgba(212, 175, 55, 0.3)",
                                         }}
                                     >
                                         {member.initials}
@@ -192,16 +193,16 @@ const About = () => {
                     <div className="hq-info">
                         <h2>{aboutContent.visitOfficeHeading}</h2>
                         <div className="office-address-box">
-                            <LocationOnRoundedIcon sx={{ color: "#38BDF8", fontSize: 24, mt: 0.3 }} />
+                            <LocationOnRoundedIcon sx={{ color: "#D4AF37", fontSize: 24, mt: 0.3 }} />
                             <span>{aboutContent.officeAddress}</span>
                         </div>
                         <div className="hq-contacts-row">
                             <span className="meta-contact-item">
-                                <PhoneRoundedIcon sx={{ fontSize: 18, color: "#38BDF8" }} />
+                                <PhoneRoundedIcon sx={{ fontSize: 18, color: "#D4AF37" }} />
                                 <a href={`tel:${companyInfo.primaryPhone.replace(/\s+/g, "")}`}>{companyInfo.primaryPhone}</a>
                             </span>
                             <span className="meta-contact-item">
-                                <EmailRoundedIcon sx={{ fontSize: 18, color: "#38BDF8" }} />
+                                <EmailRoundedIcon sx={{ fontSize: 18, color: "#D4AF37" }} />
                                 <a href={`mailto:${companyInfo.primaryEmail}`}>{companyInfo.primaryEmail}</a>
                             </span>
                         </div>

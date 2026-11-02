@@ -138,7 +138,7 @@ const Home = () => {
                         {homeContent.aboutSummary}
                     </p>
                     <div className="location-pill">
-                        <LocationOnRoundedIcon sx={{ fontSize: 18, color: "#2563EB" }} />
+                        <LocationOnRoundedIcon sx={{ fontSize: 18, color: "#D4AF37" }} />
                         <span>Office at {companyInfo.officeAddress}</span>
                     </div>
                 </div>
@@ -169,15 +169,16 @@ const Home = () => {
                             onClick={() => navigate("/services")}
                             endIcon={<ArrowForwardRoundedIcon />}
                             sx={{
-                                borderColor: "#0F172A",
-                                color: "#0F172A",
+                                borderColor: "#0B0B0B",
+                                color: "#0B0B0B",
                                 fontWeight: 700,
                                 px: 3,
                                 py: 1.2,
+                                borderRadius: "9999px",
                                 "&:hover": {
-                                    borderColor: "#2563EB",
-                                    color: "#2563EB",
-                                    backgroundColor: "#EFF6FF",
+                                    borderColor: "#D4AF37",
+                                    color: "#D4AF37",
+                                    backgroundColor: "rgba(212, 175, 55, 0.08)",
                                 },
                             }}
                         >
@@ -278,11 +279,11 @@ const Home = () => {
                                     }}
                                 >
                                     <AccordionSummary
-                                        expandIcon={<ExpandMoreRoundedIcon sx={{ color: "#2563EB" }} />}
+                                        expandIcon={<ExpandMoreRoundedIcon sx={{ color: "#D4AF37" }} />}
                                         aria-controls={`${panelId}-content`}
                                         id={`${panelId}-header`}
                                     >
-                                        <Typography sx={{ fontWeight: 700, color: "#0F172A", fontSize: "1.05rem" }}>
+                                        <Typography sx={{ fontWeight: 700, color: "#0B0B0B", fontSize: "1.05rem" }}>
                                             {faq.question}
                                         </Typography>
                                     </AccordionSummary>

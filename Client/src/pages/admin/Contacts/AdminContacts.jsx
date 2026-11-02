@@ -211,29 +211,29 @@ const AdminContacts = () => {
     const getStatusStyle = (status) => {
         switch (status) {
             case "New":
-                return { bg: "#EFF6FF", text: "#2563EB", border: "#BFDBFE" };
+                return { bg: "rgba(212, 175, 55, 0.12)", text: "#D4AF37", border: "rgba(212, 175, 55, 0.3)" };
             case "In Review":
-                return { bg: "#FFFBEB", text: "#D97706", border: "#FDE68A" };
+                return { bg: "rgba(245, 158, 11, 0.12)", text: "#F59E0B", border: "rgba(245, 158, 11, 0.3)" };
             case "Contacted":
-                return { bg: "#F5F3FF", text: "#7C3AED", border: "#DDD6FE" };
+                return { bg: "rgba(168, 85, 247, 0.12)", text: "#C084FC", border: "rgba(168, 85, 247, 0.3)" };
             case "Resolved":
-                return { bg: "#ECFDF5", text: "#059669", border: "#A7F3D0" };
+                return { bg: "rgba(16, 185, 129, 0.12)", text: "#10B981", border: "rgba(16, 185, 129, 0.3)" };
             default:
-                return { bg: "#F1F5F9", text: "#475569", border: "#E2E8F0" };
+                return { bg: "rgba(255, 255, 255, 0.05)", text: "#A0A0A0", border: "rgba(255, 255, 255, 0.1)" };
         }
     };
 
     const getInquiryTypeBadge = (type) => {
         switch (type) {
             case "Business Partnerships & Alliances":
-                return { bg: "#F5F3FF", text: "#6D28D9", border: "#DDD6FE" };
+                return { bg: "rgba(212, 175, 55, 0.15)", text: "#E5C158", border: "rgba(212, 175, 55, 0.35)" };
             case "Business Services & Sales Enquiries":
-                return { bg: "#EFF6FF", text: "#1D4ED8", border: "#BFDBFE" };
+                return { bg: "rgba(212, 175, 55, 0.12)", text: "#D4AF37", border: "rgba(212, 175, 55, 0.3)" };
             case "Careers & Recruitment":
-                return { bg: "#ECFDF5", text: "#047857", border: "#A7F3D0" };
+                return { bg: "rgba(16, 185, 129, 0.12)", text: "#10B981", border: "rgba(16, 185, 129, 0.3)" };
             case "General Enquiries":
             default:
-                return { bg: "#F0F9FF", text: "#0369A1", border: "#BAE6FD" };
+                return { bg: "rgba(255, 255, 255, 0.08)", text: "#E0E0E0", border: "rgba(255, 255, 255, 0.15)" };
         }
     };
 
@@ -268,9 +268,13 @@ const AdminContacts = () => {
                     <IconButton
                         onClick={fetchContacts}
                         sx={{
-                            backgroundColor: "#FFFFFF",
-                            border: "1px solid #E2E8F0",
-                            "&:hover": { backgroundColor: "#F8FAFC" },
+                            backgroundColor: "#141414",
+                            border: "1px solid rgba(212, 175, 55, 0.25)",
+                            color: "#D4AF37",
+                            "&:hover": {
+                                backgroundColor: "#1F1F1F",
+                                borderColor: "#D4AF37",
+                            },
                         }}
                     >
                         <RefreshRoundedIcon fontSize="small" />
@@ -359,7 +363,7 @@ const AdminContacts = () => {
                             {loading ? (
                                 <TableRow>
                                     <TableCell colSpan={6} align="center" sx={{ py: 6 }}>
-                                        <CircularProgress size={32} sx={{ color: "#0F172A" }} />
+                                        <CircularProgress size={32} sx={{ color: "#D4AF37" }} />
                                     </TableCell>
                                 </TableRow>
                             ) : filteredContacts.length === 0 ? (
@@ -413,7 +417,7 @@ const AdminContacts = () => {
                                                             }}
                                                         />
                                                     </Box>
-                                                    <Typography variant="body2" sx={{ fontWeight: 600, color: "#0F172A" }}>
+                                                    <Typography variant="body2" sx={{ fontWeight: 600, color: "#FFFFFF" }}>
                                                         {contact.subject || contact.inquiryType || "General Inquiry"}
                                                     </Typography>
                                                     <Typography
@@ -473,7 +477,7 @@ const AdminContacts = () => {
                                                                 setActiveContact(contact);
                                                                 setViewDialogOpen(true);
                                                             }}
-                                                            sx={{ color: "#2563EB" }}
+                                                            sx={{ color: "#D4AF37" }}
                                                         >
                                                             <VisibilityRoundedIcon fontSize="small" />
                                                         </IconButton>
@@ -520,54 +524,61 @@ const AdminContacts = () => {
                 onClose={() => setViewDialogOpen(false)}
                 maxWidth="md"
                 fullWidth
-                PaperProps={{ sx: { borderRadius: 3 } }}
+                PaperProps={{
+                    sx: {
+                        borderRadius: 3,
+                        backgroundColor: "#141414",
+                        color: "#FFFFFF",
+                        border: "1px solid rgba(212, 175, 55, 0.25)",
+                    },
+                }}
             >
                 {activeContact && (
                     <>
-                        <DialogTitle sx={{ fontWeight: 700, pb: 1 }}>
+                        <DialogTitle sx={{ fontWeight: 700, pb: 1, color: "#FFFFFF" }}>
                             Inquiry from {activeContact.fullName || `${activeContact.firstName || ""} ${activeContact.lastName || ""}`}
                         </DialogTitle>
-                        <DialogContent dividers>
+                        <DialogContent dividers sx={{ borderColor: "rgba(255, 255, 255, 0.1)" }}>
                             <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
                                 {/* Metadata Row */}
                                 <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" }, gap: 2 }}>
                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                        <EmailRoundedIcon sx={{ color: "#64748B", fontSize: 20 }} />
+                                        <EmailRoundedIcon sx={{ color: "#D4AF37", fontSize: 20 }} />
                                         <Typography variant="body2" sx={{ fontWeight: 500 }}>
-                                            <a href={`mailto:${activeContact.email}`} style={{ color: "#2563EB", textDecoration: "none" }}>
+                                            <a href={`mailto:${activeContact.email}`} style={{ color: "#D4AF37", textDecoration: "none" }}>
                                                 {activeContact.email}
                                             </a>
                                         </Typography>
                                     </Box>
                                     {activeContact.phone && (
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                            <PhoneRoundedIcon sx={{ color: "#64748B", fontSize: 20 }} />
-                                            <Typography variant="body2">{activeContact.phone}</Typography>
+                                            <PhoneRoundedIcon sx={{ color: "#D4AF37", fontSize: 20 }} />
+                                            <Typography variant="body2" sx={{ color: "#E0E0E0" }}>{activeContact.phone}</Typography>
                                         </Box>
                                     )}
                                     {activeContact.company && (
                                         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                            <BusinessRoundedIcon sx={{ color: "#64748B", fontSize: 20 }} />
-                                            <Typography variant="body2">
+                                            <BusinessRoundedIcon sx={{ color: "#D4AF37", fontSize: 20 }} />
+                                            <Typography variant="body2" sx={{ color: "#E0E0E0" }}>
                                                 {activeContact.company} {activeContact.jobTitle ? `(${activeContact.jobTitle})` : ""}
                                             </Typography>
                                         </Box>
                                     )}
                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                                        <Typography variant="caption" color="text.secondary">
+                                        <Typography variant="caption" sx={{ color: "#A0A0A0" }}>
                                             Received: {formatDate(activeContact.createdAt)}
                                         </Typography>
                                     </Box>
                                 </Box>
 
-                                <Divider />
+                                <Divider sx={{ borderColor: "rgba(255, 255, 255, 0.1)" }} />
 
                                 {/* Subject & Type */}
                                 <Box>
-                                    <Typography variant="caption" color="text.secondary" sx={{ textTransform: "uppercase", fontWeight: 700 }}>
+                                    <Typography variant="caption" sx={{ color: "#A0A0A0", textTransform: "uppercase", fontWeight: 700 }}>
                                         Inquiry Subject
                                     </Typography>
-                                    <Typography variant="h6" sx={{ fontWeight: 700, mt: 0.5, color: "#0F172A" }}>
+                                    <Typography variant="h6" sx={{ fontWeight: 700, mt: 0.5, color: "#FFFFFF" }}>
                                         {activeContact.subject || activeContact.inquiryType || "General Inquiry"}
                                     </Typography>
                                     {activeContact.inquiryType && (
@@ -588,19 +599,19 @@ const AdminContacts = () => {
 
                                 {/* Full Message */}
                                 <Box>
-                                    <Typography variant="caption" color="text.secondary" sx={{ textTransform: "uppercase", fontWeight: 700 }}>
+                                    <Typography variant="caption" sx={{ color: "#A0A0A0", textTransform: "uppercase", fontWeight: 700 }}>
                                         Message Body
                                     </Typography>
                                     <Box
                                         sx={{
                                             mt: 1,
                                             p: 2.5,
-                                            backgroundColor: "#F8FAFC",
+                                            backgroundColor: "#0B0B0B",
                                             borderRadius: 2,
-                                            border: "1px solid #E2E8F0",
+                                            border: "1px solid rgba(212, 175, 55, 0.2)",
                                             whiteSpace: "pre-wrap",
                                             lineHeight: 1.6,
-                                            color: "#1E293B",
+                                            color: "#E0E0E0",
                                         }}
                                     >
                                         {activeContact.message}
@@ -609,7 +620,7 @@ const AdminContacts = () => {
 
                                 {/* Status Selector in modal */}
                                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600, color: "#FFFFFF" }}>
                                         Status:
                                     </Typography>
                                     <Select
@@ -618,7 +629,17 @@ const AdminContacts = () => {
                                         onChange={(e) =>
                                             handleStatusUpdate(activeContact._id, e.target.value)
                                         }
-                                        sx={{ minWidth: 150 }}
+                                        sx={{
+                                            minWidth: 150,
+                                            backgroundColor: "#1B1B1B",
+                                            color: "#FFFFFF",
+                                            "& .MuiOutlinedInput-notchedOutline": {
+                                                borderColor: "rgba(212, 175, 55, 0.3)",
+                                            },
+                                            "&:hover .MuiOutlinedInput-notchedOutline": {
+                                                borderColor: "#D4AF37",
+                                            },
+                                        }}
                                     >
                                         <MenuItem value="New">New</MenuItem>
                                         <MenuItem value="In Review">In Review</MenuItem>
@@ -628,11 +649,18 @@ const AdminContacts = () => {
                                 </Box>
                             </Box>
                         </DialogContent>
-                        <DialogActions sx={{ p: 2 }}>
-                            <Button onClick={() => setViewDialogOpen(false)}>Close</Button>
+                        <DialogActions sx={{ p: 2, borderColor: "rgba(255, 255, 255, 0.1)" }}>
+                            <Button onClick={() => setViewDialogOpen(false)} sx={{ color: "#A0A0A0" }}>Close</Button>
                             <Button
                                 variant="contained"
                                 href={`mailto:${activeContact.email}?subject=Re: ${encodeURIComponent(activeContact.subject || "Your Inquiry to Liaxon")}`}
+                                sx={{
+                                    backgroundColor: "#D4AF37",
+                                    color: "#0B0B0B",
+                                    fontWeight: 700,
+                                    textTransform: "none",
+                                    "&:hover": { backgroundColor: "#E5C158" },
+                                }}
                             >
                                 Reply via Email
                             </Button>
@@ -645,22 +673,30 @@ const AdminContacts = () => {
             <Dialog
                 open={deleteDialogOpen}
                 onClose={() => setDeleteDialogOpen(false)}
-                PaperProps={{ sx: { borderRadius: 3, p: 1 } }}
+                PaperProps={{
+                    sx: {
+                        borderRadius: 3,
+                        p: 1,
+                        backgroundColor: "#141414",
+                        color: "#FFFFFF",
+                        border: "1px solid rgba(239, 68, 68, 0.3)",
+                    },
+                }}
             >
-                <DialogTitle sx={{ fontWeight: 700, color: "#0F172A" }}>
+                <DialogTitle sx={{ fontWeight: 700, color: "#FFFFFF" }}>
                     Confirm Deletion
                 </DialogTitle>
                 <DialogContent>
-                    <DialogContentText color="text.secondary">
+                    <DialogContentText sx={{ color: "#A0A0A0" }}>
                         Are you sure you want to delete the contact inquiry from{" "}
-                        <strong>{contactToDelete?.fullName || contactToDelete?.email}</strong>? This action cannot be undone.
+                        <strong style={{ color: "#FFFFFF" }}>{contactToDelete?.fullName || contactToDelete?.email}</strong>? This action cannot be undone.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions sx={{ pb: 1, px: 2 }}>
                     <Button
                         onClick={() => setDeleteDialogOpen(false)}
                         disabled={deleting}
-                        sx={{ color: "#64748B" }}
+                        sx={{ color: "#A0A0A0" }}
                     >
                         Cancel
                     </Button>

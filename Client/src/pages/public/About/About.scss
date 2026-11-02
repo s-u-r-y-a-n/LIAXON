@@ -19,9 +19,9 @@
 
       .hero-tag {
         display: inline-block;
-        background: rgba(37, 99, 235, 0.2);
-        border: 1px solid rgba(56, 189, 248, 0.35);
-        color: #38bdf8;
+        background: rgba(212, 175, 55, 0.15);
+        border: 1px solid rgba(212, 175, 55, 0.35);
+        color: $color-accent-gold;
         font-size: 0.825rem;
         font-weight: 700;
         text-transform: uppercase;
@@ -45,7 +45,7 @@
 
       .hero-tagline {
         font-size: 1.35rem;
-        color: #38bdf8;
+        color: $color-accent-hover;
         font-weight: 700;
         margin-bottom: 24px;
       }
@@ -53,14 +53,14 @@
       .hero-lead-text {
         font-size: 1.15rem;
         line-height: 1.7;
-        color: #cbd5e1;
+        color: #d0d0d0;
         margin-bottom: 16px;
       }
 
       .hero-sub-text {
         font-size: 1.05rem;
         line-height: 1.65;
-        color: #94a3b8;
+        color: #a0a0a0;
       }
     }
   }
@@ -85,7 +85,7 @@
         .section-lead {
           font-size: 1.15rem;
           line-height: 1.7;
-          color: $color-navy;
+          color: #0b0b0b;
           margin-bottom: 20px;
           font-weight: 500;
         }
@@ -93,9 +93,9 @@
         .story-highlight {
           font-size: 1.25rem;
           font-weight: 800;
-          color: $color-blue-primary;
+          color: $color-accent-gold;
           padding-left: 18px;
-          border-left: 4px solid $color-blue-primary;
+          border-left: 4px solid $color-accent-gold;
           margin-top: 24px;
         }
       }
@@ -103,15 +103,17 @@
       .story-stats-card {
         .vision-box {
           background: $gradient-hero;
+          border: 1px solid rgba(212, 175, 55, 0.25);
           border-radius: 20px;
           padding: 44px 36px;
           color: #ffffff;
-          box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 
           .vision-tag {
             display: inline-block;
-            background: rgba(56, 189, 248, 0.2);
-            color: #38bdf8;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: $color-accent-gold;
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -135,7 +137,7 @@
   // 3. Mission Section
   .mission-section {
     padding: 88px 0;
-    background: $color-bg-light;
+    background: #fafafa;
 
     .mission-container {
       @include container;
@@ -157,18 +159,18 @@
           background: #ffffff;
           padding: 24px 28px;
           border-radius: 12px;
-          border: 1px solid $color-border-light;
+          border: 1px solid rgba(0, 0, 0, 0.08);
           @include card-hover;
 
           .mission-icon {
-            color: $color-blue-primary;
+            color: $color-accent-gold;
             margin-top: 2px;
             flex-shrink: 0;
           }
 
           .mission-text {
             font-size: 1.05rem;
-            color: $color-navy;
+            color: #0b0b0b;
             line-height: 1.6;
             font-weight: 500;
             margin: 0;
@@ -202,7 +204,7 @@
 
         .value-card {
           background: #ffffff;
-          border: 1px solid $color-border-light;
+          border: 1px solid rgba(0, 0, 0, 0.08);
           border-radius: $radius-lg;
           padding: 32px 24px;
           text-align: center;
@@ -210,7 +212,7 @@
 
           .val-icon {
             font-size: 2.25rem;
-            color: $color-blue-primary;
+            color: $color-accent-gold;
             margin-bottom: 16px;
             @include flex-center;
           }
@@ -218,7 +220,7 @@
           h4 {
             font-size: 1.2rem;
             font-weight: 800;
-            color: $color-navy;
+            color: #0b0b0b;
             margin-bottom: 10px;
           }
 
@@ -238,7 +240,7 @@
     padding: 88px 0;
 
     &.leadership-section {
-      background: $color-bg-light;
+      background: #fafafa;
     }
 
     &.core-team-section {
@@ -263,7 +265,7 @@
 
         .leader-card {
           background: #ffffff;
-          border: 1px solid $color-border-light;
+          border: 1px solid rgba(0, 0, 0, 0.08);
           border-radius: 16px;
           padding: 36px 28px;
           text-align: center;
@@ -278,7 +280,7 @@
           .leader-name {
             font-size: 1.3rem;
             font-weight: 800;
-            color: $color-navy;
+            color: #0b0b0b;
             margin-bottom: 6px;
           }
 
@@ -286,7 +288,7 @@
             display: inline-block;
             font-size: 0.85rem;
             font-weight: 700;
-            color: $color-blue-primary;
+            color: $color-accent-gold;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 14px;
@@ -319,8 +321,8 @@
           display: flex;
           align-items: center;
           gap: 16px;
-          background: $color-bg-light;
-          border: 1px solid $color-border-light;
+          background: #fafafa;
+          border: 1px solid rgba(0, 0, 0, 0.08);
           border-radius: 12px;
           padding: 20px;
           @include card-hover;
@@ -332,7 +334,7 @@
             .member-name {
               font-size: 1.05rem;
               font-weight: 800;
-              color: $color-navy;
+              color: #0b0b0b;
               margin-bottom: 4px;
             }
 
@@ -340,7 +342,7 @@
               display: block;
               font-size: 0.85rem;
               font-weight: 700;
-              color: $color-blue-primary;
+              color: $color-accent-gold;
               margin-bottom: 2px;
             }
 
@@ -358,8 +360,9 @@
   // 6. HQ Banner
   .hq-banner-section {
     padding: 80px 0;
-    background: $color-navy-dark;
+    background: #070707;
     color: #ffffff;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
 
     .hq-container {
       @include container;
@@ -417,7 +420,7 @@
               text-decoration: none;
 
               &:hover {
-                color: #38bdf8;
+                color: $color-accent-gold;
               }
             }
           }
@@ -426,12 +429,20 @@
 
       .hq-action {
         .hq-contact-btn {
-          background: $gradient-accent;
-          color: #ffffff;
-          font-weight: 700;
+          background: $gradient-gold;
+          color: #0b0b0b;
+          font-weight: 800;
           padding: 14px 32px;
-          border-radius: 8px;
+          border-radius: 9999px;
           font-size: 1rem;
+          box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: #f3e5ab;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-1px);
+          }
         }
       }
     }

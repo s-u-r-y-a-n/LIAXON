@@ -1,20 +1,22 @@
+@use "../../../styles/variables" as *;
+
 .admin-login-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background: radial-gradient(circle at 50% 20%, #161616 0%, #0b0b0b 70%);
   padding: 24px;
   position: relative;
   overflow: hidden;
 
-  // Subtle background glow effects
+  // Subtle gold background glow effects
   &::before {
     content: '';
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
     top: -150px;
     right: -150px;
     pointer-events: none;
@@ -25,7 +27,7 @@
     position: absolute;
     width: 450px;
     height: 450px;
-    background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
     bottom: -150px;
     left: -150px;
     pointer-events: none;
@@ -34,11 +36,10 @@
   .login-card {
     width: 100%;
     max-width: 440px;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(16px);
+    background: #141414;
     border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.06);
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -51,25 +52,19 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 56px;
-        height: 56px;
-        background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
-        border-radius: 14px;
-        color: #ffffff;
         margin-bottom: 16px;
-        box-shadow: 0 8px 16px rgba(37, 99, 235, 0.3);
       }
 
       .login-title {
         font-size: 1.6rem;
         font-weight: 800;
-        color: #0f172a;
+        color: #ffffff;
         letter-spacing: -0.02em;
         margin-bottom: 6px;
       }
 
       .login-subtitle {
-        color: #64748b;
+        color: #a0a0a0;
         font-size: 0.9rem;
       }
     }
@@ -80,18 +75,55 @@
       flex-direction: column;
       gap: 20px;
 
+      .MuiInputLabel-root {
+        color: #a0a0a0;
+
+        &.Mui-focused {
+          color: #d4af37;
+        }
+      }
+
+      .MuiOutlinedInput-root {
+        background: #1b1b1b;
+        color: #ffffff;
+        border-radius: 10px;
+
+        .MuiOutlinedInput-notchedOutline {
+          border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        &:hover .MuiOutlinedInput-notchedOutline {
+          border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        &.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border-color: #d4af37;
+          border-width: 1.5px;
+        }
+      }
+
+      .MuiIconButton-root {
+        color: #a0a0a0;
+
+        &:hover {
+          color: #d4af37;
+        }
+      }
+
       .submit-button {
-        height: 46px;
+        height: 48px;
         font-size: 0.95rem;
         font-weight: 700;
         margin-top: 8px;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        color: #ffffff;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+        background: linear-gradient(135deg, #d4af37 0%, #c5a059 100%);
+        color: #0b0b0b;
+        box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+        border-radius: 10px;
+        text-transform: none;
 
         &:hover {
-          background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-          box-shadow: 0 6px 16px rgba(15, 23, 42, 0.3);
+          background: linear-gradient(135deg, #e5c158 0%, #d4af37 100%);
+          box-shadow: 0 6px 18px rgba(212, 175, 55, 0.45);
         }
       }
     }
@@ -99,17 +131,17 @@
     .login-footer {
       padding: 16px 32px 24px;
       text-align: center;
-      border-top: 1px solid #f1f5f9;
-      background: #fafafa;
+      border-top: 1px solid rgba(212, 175, 55, 0.15);
+      background: #101010;
 
       .back-link {
-        font-size: 0.825rem;
-        color: #64748b;
+        font-size: 0.85rem;
+        color: #a0a0a0;
         text-decoration: none;
         transition: color 0.2s;
 
         &:hover {
-          color: #2563eb;
+          color: #d4af37;
         }
       }
     }

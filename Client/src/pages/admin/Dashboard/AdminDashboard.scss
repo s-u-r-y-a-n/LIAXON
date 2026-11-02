@@ -1,3 +1,5 @@
+@use "../../../styles/variables" as *;
+
 .admin-dashboard {
   display: flex;
   flex-direction: column;
@@ -14,12 +16,12 @@
       .welcome-title {
         font-size: 1.75rem;
         font-weight: 800;
-        color: #0f172a;
+        color: #ffffff;
         letter-spacing: -0.02em;
       }
 
       .welcome-sub {
-        color: #64748b;
+        color: #a0a0a0;
         font-size: 0.95rem;
         margin-top: 2px;
       }
@@ -37,18 +39,19 @@
     gap: 20px;
 
     .metric-card {
-      background: #ffffff;
+      background: #141414;
       border-radius: 14px;
       padding: 22px 24px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid rgba(212, 175, 55, 0.18);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.08);
+        border-color: rgba(212, 175, 55, 0.4);
+        box-shadow: 0 10px 24px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.06);
       }
 
       .metric-info {
@@ -58,7 +61,7 @@
         .metric-label {
           font-size: 0.825rem;
           font-weight: 600;
-          color: #64748b;
+          color: #a0a0a0;
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
@@ -66,20 +69,20 @@
         .metric-value {
           font-size: 2.1rem;
           font-weight: 800;
-          color: #0f172a;
+          color: #ffffff;
           line-height: 1.1;
           margin: 6px 0 4px;
         }
 
         .metric-sub {
           font-size: 0.775rem;
-          color: #94a3b8;
+          color: #777777;
           display: flex;
           align-items: center;
           gap: 6px;
 
           &.highlight {
-            color: #2563eb;
+            color: #d4af37;
             font-weight: 600;
           }
         }
@@ -94,20 +97,24 @@
         justify-content: center;
 
         &.blue {
-          background-color: #eff6ff;
-          color: #2563eb;
+          background-color: rgba(212, 175, 55, 0.12);
+          color: #d4af37;
+          border: 1px solid rgba(212, 175, 55, 0.25);
         }
         &.teal {
-          background-color: #f0fdf4;
-          color: #10b981;
+          background-color: rgba(16, 185, 129, 0.12);
+          color: #34d399;
+          border: 1px solid rgba(16, 185, 129, 0.25);
         }
         &.amber {
-          background-color: #fffbeb;
-          color: #f59e0b;
+          background-color: rgba(245, 158, 11, 0.12);
+          color: #fbbf24;
+          border: 1px solid rgba(245, 158, 11, 0.25);
         }
         &.purple {
-          background-color: #f5f3ff;
-          color: #8b5cf6;
+          background-color: rgba(168, 85, 247, 0.12);
+          color: #c084fc;
+          border: 1px solid rgba(168, 85, 247, 0.25);
         }
       }
     }
@@ -124,8 +131,8 @@
 
     .recent-card {
       border-radius: 14px;
-      border: 1px solid #e2e8f0;
-      background: #ffffff;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      background: #141414;
       overflow: hidden;
 
       .card-header-bar {
@@ -133,33 +140,54 @@
         justify-content: space-between;
         align-items: center;
         padding: 18px 22px;
-        border-bottom: 1px solid #f1f5f9;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
         .card-title {
           font-size: 1.05rem;
           font-weight: 700;
-          color: #0f172a;
+          color: #ffffff;
         }
 
         .view-all-link {
           font-size: 0.85rem;
           font-weight: 600;
-          color: #2563eb;
+          color: #d4af37;
           cursor: pointer;
           display: flex;
           align-items: center;
           gap: 4px;
+          transition: color 0.2s;
 
           &:hover {
+            color: #e5c158;
             text-decoration: underline;
           }
         }
       }
 
+      .MuiTableHead-root .MuiTableCell-root {
+        background: #111111;
+        color: #a0a0a0;
+        font-weight: 700;
+        font-size: 0.775rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      }
+
+      .MuiTableBody-root .MuiTableCell-root {
+        color: #e0e0e0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .MuiTableRow-root.MuiTableRow-hover:hover {
+        background-color: rgba(212, 175, 55, 0.04) !important;
+      }
+
       .empty-state {
         padding: 40px 20px;
         text-align: center;
-        color: #94a3b8;
+        color: #777777;
       }
     }
   }

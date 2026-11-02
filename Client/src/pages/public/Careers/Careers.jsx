@@ -20,6 +20,23 @@ const WHY_ICONS = [
     <BusinessRoundedIcon fontSize="inherit" />,
 ];
 
+const parseList = (val) => {
+    if (!val) return [];
+    if (Array.isArray(val)) {
+        return val
+            .flatMap((item) => (typeof item === "string" ? item.split("\n") : []))
+            .map((s) => s.replace(/^[•\-\*]\s*/, "").trim())
+            .filter(Boolean);
+    }
+    if (typeof val === "string") {
+        return val
+            .split("\n")
+            .map((s) => s.replace(/^[•\-\*]\s*/, "").trim())
+            .filter(Boolean);
+    }
+    return [];
+};
+
 const Careers = () => {
     const [liveJobs, setLiveJobs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -105,50 +122,83 @@ const Careers = () => {
 
                     {loading ? (
                         <Box sx={{ display: "flex", justifyContent: "center", py: 6 }}>
-                            <CircularProgress size={36} sx={{ color: "#2563EB" }} />
+                            <CircularProgress size={36} sx={{ color: "#D4AF37" }} />
                         </Box>
                     ) : liveJobs && liveJobs.length > 0 ? (
                         <div className="opportunities-grid">
-                            {liveJobs.map((job) => (
-                                <div key={job._id} className="opportunity-card">
-                                    <div className="role-meta">
-                                        <span className="badge-role">
-                                            {job.domain || (job.employmentType === "Internship" ? "Cohort Program" : "Professional Role")}
-                                        </span>
-                                        {job.employmentType && (
-                                            <span className="badge-type">
-                                                {job.employmentType}
-                                            </span>
-                                        )}
+                            {liveJobs.map((job) => {
+                                const responsibilities = parseList(job.responsibilities);
+                                const requirements = parseList(job.requirements);
+
+                                return (
+                                    <div key={job._id} className="opportunity-card">
+                                        <div className="role-top-content">
+                                            <div className="role-meta">
+                                                <span className="badge-role">
+                                                    {job.domain || (job.employmentType === "Internship" ? "Cohort Program" : "Professional Role")}
+                                                </span>
+                                                {job.employmentType && (
+                                                    <span className="badge-type">
+                                                        {job.employmentType}
+                                                    </span>
+                                                )}
+                                                {job.openingsCount > 1 && (
+                                                    <span className="badge-openings">
+                                                        {job.openingsCount} Openings
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <h3 className="role-title">{job.title}</h3>
+                                            <p className="role-location">
+                                                {job.location || "Tholayavattam, Kanyakumari District"}
+                                            </p>
+                                            {job.experienceLevel && (
+                                                <p className="role-exp">
+                                                    <strong>Experience:</strong> {job.experienceLevel}
+                                                </p>
+                                            )}
+                                            {job.description && (
+                                                <p className="role-desc">
+                                                    {job.description}
+                                                </p>
+                                            )}
+
+                                            {responsibilities.length > 0 && (
+                                                <div className="role-section">
+                                                    <h4 className="role-section-title">Key Responsibilities</h4>
+                                                    <ul className="role-list">
+                                                        {responsibilities.map((resp, idx) => (
+                                                            <li key={idx}>{resp}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+
+                                            {requirements.length > 0 && (
+                                                <div className="role-section">
+                                                    <h4 className="role-section-title">Requirements & Skills</h4>
+                                                    <ul className="role-list">
+                                                        {requirements.map((req, idx) => (
+                                                            <li key={idx}>{req}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        <Button
+                                            variant="outlined"
+                                            className="role-apply-btn"
+                                            onClick={() => {
+                                                setSelectedJob(job);
+                                                setModalOpen(true);
+                                            }}
+                                        >
+                                            Apply for Role
+                                        </Button>
                                     </div>
-                                    <h3 className="role-title">{job.title}</h3>
-                                    <p className="role-location">
-                                        {job.location || "Tholayavattam, Kanyakumari District"}
-                                    </p>
-                                    {job.experienceLevel && (
-                                        <p className="role-exp">
-                                            <strong>Experience:</strong> {job.experienceLevel}
-                                        </p>
-                                    )}
-                                    {job.description && (
-                                        <p className="role-desc">
-                                            {job.description.length > 130
-                                                ? `${job.description.slice(0, 130)}...`
-                                                : job.description}
-                                        </p>
-                                    )}
-                                    <Button
-                                        variant="outlined"
-                                        className="role-apply-btn"
-                                        onClick={() => {
-                                            setSelectedJob(job);
-                                            setModalOpen(true);
-                                        }}
-                                    >
-                                        Apply for Role
-                                    </Button>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     ) : (
                         <div className="no-openings-box">

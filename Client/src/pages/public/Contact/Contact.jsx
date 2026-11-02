@@ -381,13 +381,13 @@ const Contact = () => {
 
                                 <div className="channel-links">
                                     <div className="link-row">
-                                        <EmailRoundedIcon sx={{ fontSize: 17, color: "#2563EB" }} />
+                                        <EmailRoundedIcon sx={{ fontSize: 17, color: "#D4AF37" }} />
                                         <a href={`mailto:${dept.email}`}>{dept.email}</a>
                                     </div>
 
                                     {dept.phone && (
                                         <div className="link-row">
-                                            <PhoneRoundedIcon sx={{ fontSize: 17, color: "#2563EB" }} />
+                                            <PhoneRoundedIcon sx={{ fontSize: 17, color: "#D4AF37" }} />
                                             <a href={`tel:${dept.phoneRaw}`}>{dept.phone}</a>
                                         </div>
                                     )}

@@ -17,11 +17,11 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     padding: 6px 14px;
-    background: $color-blue-light;
-    color: $color-blue-primary;
+    background: rgba(212, 175, 55, 0.12);
+    color: $color-accent-gold;
     border-radius: $radius-full;
     margin-bottom: 14px;
-    border: 1px solid rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.25);
   }
 
   .main-heading {

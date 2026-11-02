@@ -33,10 +33,10 @@ import WorkRoundedIcon from "@mui/icons-material/WorkRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
-import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
 import ManageAccountsRoundedIcon from "@mui/icons-material/ManageAccountsRounded";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useSocketEvent } from "../hooks/useSocket.js";
+import liaxonLogo from "../assets/logo-1.jpeg";
 import "./AdminLayout.scss";
 
 const DRAWER_WIDTH = 260;
@@ -142,25 +142,54 @@ const AdminLayout = () => {
                 height: "100%",
                 display: "flex",
                 flexDirection: "column",
-                backgroundColor: "#FFFFFF",
+                backgroundColor: "#0B0B0B",
+                color: "#FFFFFF",
             }}
         >
-            {/* Sidebar Brand Header */}
-            <Box className="sidebar-brand">
-                <Box className="brand-icon">
-                    <ShieldRoundedIcon fontSize="small" />
-                </Box>
-                <Box>
-                    <Typography className="brand-text">
-                        Liaxon <span>Admin</span>
-                    </Typography>
-                </Box>
-                <span className="portal-badge">v1.0</span>
+            {/* Sidebar Brand Header with Official Logo */}
+            <Box
+                className="sidebar-brand"
+                onClick={() => navigate("/admin/dashboard")}
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "20px 18px",
+                    borderBottom: "1px solid rgba(212, 175, 55, 0.2)",
+                    cursor: "pointer",
+                }}
+            >
+                <img
+                    src={liaxonLogo}
+                    alt="Liaxon Admin"
+                    className="admin-sidebar-logo"
+                    style={{ maxHeight: "38px", width: "auto", objectFit: "contain", display: "block" }}
+                />
+                <span
+                    className="portal-badge"
+                    style={{
+                        fontSize: "0.65rem",
+                        backgroundColor: "rgba(212, 175, 55, 0.15)",
+                        color: "#D4AF37",
+                        border: "1px solid rgba(212, 175, 55, 0.3)",
+                        padding: "2px 8px",
+                        borderRadius: "4px",
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                    }}
+                >
+                    Admin
+                </span>
             </Box>
 
             {/* Navigation Menu */}
-            <Box className="nav-list" sx={{ flexGrow: 1 }}>
-                <Typography className="nav-section-title">Navigation</Typography>
+            <Box className="nav-list" sx={{ flexGrow: 1, p: 2 }}>
+                <Typography
+                    className="nav-section-title"
+                    sx={{ color: "#777777", fontSize: "0.72rem", fontWeight: 700, letterSpacing: "0.08em", mb: 1, px: 1.5 }}
+                >
+                    Navigation
+                </Typography>
                 <List disablePadding>
                     {NAV_ITEMS.map((item) => {
                         const isActive =
@@ -182,15 +211,17 @@ const AdminLayout = () => {
                                     {item.path === "/admin/contacts" && unreadContactsCount > 0 ? (
                                         <Badge
                                             badgeContent={unreadContactsCount}
-                                            color="error"
-                                            max={99}
                                             sx={{
                                                 "& .MuiBadge-badge": {
                                                     fontSize: "0.7rem",
                                                     height: 18,
                                                     minWidth: 18,
+                                                    backgroundColor: "#D4AF37",
+                                                    color: "#0B0B0B",
+                                                    fontWeight: 800,
                                                 },
                                             }}
+                                            max={99}
                                         >
                                             {item.icon}
                                         </Badge>
@@ -202,7 +233,7 @@ const AdminLayout = () => {
                                     primary={item.label}
                                     primaryTypographyProps={{
                                         fontSize: "0.915rem",
-                                        fontWeight: isActive ? 600 : 500,
+                                        fontWeight: isActive ? 700 : 500,
                                     }}
                                 />
                             </ListItemButton>
@@ -212,7 +243,14 @@ const AdminLayout = () => {
             </Box>
 
             {/* Sidebar User Footer */}
-            <Box className="sidebar-footer">
+            <Box
+                className="sidebar-footer"
+                sx={{
+                    p: 2,
+                    borderTop: "1px solid rgba(212, 175, 55, 0.18)",
+                    backgroundColor: "#0B0B0B",
+                }}
+            >
                 <Tooltip title="Click to view & edit Profile / Password">
                     <Box
                         className="admin-user-card"
@@ -221,10 +259,15 @@ const AdminLayout = () => {
                             if (isMobile) setMobileOpen(false);
                         }}
                         sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 1.5,
+                            p: 1.2,
+                            borderRadius: 2,
                             cursor: "pointer",
                             transition: "background-color 0.2s, transform 0.15s",
                             "&:hover": {
-                                backgroundColor: "#F1F5F9",
+                                backgroundColor: "rgba(212, 175, 55, 0.08)",
                                 transform: "translateY(-1px)",
                             },
                         }}
@@ -233,18 +276,19 @@ const AdminLayout = () => {
                             sx={{
                                 width: 38,
                                 height: 38,
-                                bgcolor: "#0F172A",
+                                bgcolor: "#D4AF37",
+                                color: "#0B0B0B",
                                 fontSize: "0.95rem",
-                                fontWeight: 700,
+                                fontWeight: 800,
                             }}
                         >
                             {user?.name ? user.name.charAt(0).toUpperCase() : "A"}
                         </Avatar>
                         <Box className="user-info">
-                            <Typography className="user-name">
+                            <Typography className="user-name" sx={{ color: "#FFFFFF", fontWeight: 600, fontSize: "0.875rem" }}>
                                 {user?.name || "Admin"}
                             </Typography>
-                            <Typography className="user-role">
+                            <Typography className="user-role" sx={{ color: "#A0A0A0", fontSize: "0.75rem" }}>
                                 {user?.email || "admin@liaxon.com"}
                             </Typography>
                         </Box>
@@ -267,7 +311,8 @@ const AdminLayout = () => {
                     "& .MuiDrawer-paper": {
                         width: DRAWER_WIDTH,
                         boxSizing: "border-box",
-                        borderRight: "1px solid #E2E8F0",
+                        backgroundColor: "#0B0B0B",
+                        borderRight: "1px solid rgba(212, 175, 55, 0.2)",
                     },
                 }}
             >
@@ -277,7 +322,15 @@ const AdminLayout = () => {
             {/* Main Content Area */}
             <Box className="admin-main">
                 {/* Top App Bar */}
-                <AppBar position="sticky" elevation={0} className="admin-header">
+                <AppBar
+                    position="sticky"
+                    elevation={0}
+                    className="admin-header"
+                    sx={{
+                        backgroundColor: "#0B0B0B",
+                        borderBottom: "1px solid rgba(212, 175, 55, 0.18)",
+                    }}
+                >
                     <Toolbar className="header-toolbar">
                         <Box className="header-title-box">
                             {isMobile && (
@@ -286,7 +339,7 @@ const AdminLayout = () => {
                                     aria-label="open drawer"
                                     edge="start"
                                     onClick={handleDrawerToggle}
-                                    sx={{ mr: 1, color: "#0F172A" }}
+                                    sx={{ mr: 1, color: "#D4AF37" }}
                                 >
                                     <MenuRoundedIcon />
                                 </IconButton>
@@ -295,7 +348,7 @@ const AdminLayout = () => {
                                 variant="h6"
                                 sx={{
                                     fontWeight: 700,
-                                    color: "#0F172A",
+                                    color: "#FFFFFF",
                                     fontSize: { xs: "1.1rem", md: "1.25rem" },
                                 }}
                             >
@@ -311,12 +364,15 @@ const AdminLayout = () => {
                                     startIcon={<OpenInNewRoundedIcon fontSize="small" />}
                                     onClick={() => window.open("/", "_blank")}
                                     sx={{
-                                        borderColor: "#E2E8F0",
-                                        color: "#475569",
+                                        borderColor: "rgba(212, 175, 55, 0.35)",
+                                        color: "#E0E0E0",
+                                        borderRadius: "9999px",
+                                        fontWeight: 600,
                                         display: { xs: "none", sm: "inline-flex" },
                                         "&:hover": {
-                                            borderColor: "#CBD5E1",
-                                            backgroundColor: "#F8FAFC",
+                                            borderColor: "#D4AF37",
+                                            color: "#D4AF37",
+                                            backgroundColor: "rgba(212, 175, 55, 0.08)",
                                         },
                                     }}
                                 >
@@ -327,11 +383,11 @@ const AdminLayout = () => {
                             <Chip
                                 label={user?.role || "Admin"}
                                 size="small"
-                                color="primary"
                                 sx={{
-                                    fontWeight: 600,
+                                    fontWeight: 700,
                                     fontSize: "0.75rem",
-                                    backgroundColor: "#0F172A",
+                                    backgroundColor: "#D4AF37",
+                                    color: "#0B0B0B",
                                     display: { xs: "none", md: "inline-flex" },
                                 }}
                             />
@@ -348,6 +404,8 @@ const AdminLayout = () => {
                                         color: "#EF4444",
                                         border: "1px solid #FEE2E2",
                                         boxShadow: "none",
+                                        borderRadius: "8px",
+                                        fontWeight: 600,
                                         "&:hover": {
                                             backgroundColor: "#FEE2E2",
                                             boxShadow: "none",
@@ -371,20 +429,28 @@ const AdminLayout = () => {
             <Dialog
                 open={logoutDialogOpen}
                 onClose={() => setLogoutDialogOpen(false)}
-                PaperProps={{ sx: { borderRadius: 3, p: 1 } }}
+                PaperProps={{
+                    sx: {
+                        borderRadius: 3,
+                        p: 1,
+                        backgroundColor: "#161616",
+                        color: "#FFFFFF",
+                        border: "1px solid rgba(212, 175, 55, 0.25)",
+                    },
+                }}
             >
-                <DialogTitle sx={{ fontWeight: 700, color: "#0F172A" }}>
+                <DialogTitle sx={{ fontWeight: 700, color: "#FFFFFF" }}>
                     Confirm Logout
                 </DialogTitle>
                 <DialogContent>
-                    <DialogContentText color="text.secondary">
+                    <DialogContentText sx={{ color: "#C0C0C0" }}>
                         Are you sure you want to log out of the Liaxon Admin Portal? Your active session token will be cleared.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions sx={{ pb: 1, px: 2 }}>
                     <Button
                         onClick={() => setLogoutDialogOpen(false)}
-                        sx={{ color: "#64748B" }}
+                        sx={{ color: "#94A3B8" }}
                     >
                         Cancel
                     </Button>
@@ -411,12 +477,13 @@ const AdminLayout = () => {
                     variant="filled"
                     sx={{
                         width: "100%",
-                        backgroundColor: "#0F172A",
+                        backgroundColor: "#161616",
                         color: "#FFFFFF",
-                        boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.4)",
+                        border: "1px solid rgba(212, 175, 55, 0.35)",
+                        boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.6)",
                         borderRadius: 2,
                         alignItems: "center",
-                        "& .MuiAlert-icon": { color: "#38BDF8" },
+                        "& .MuiAlert-icon": { color: "#D4AF37" },
                     }}
                     action={
                         <Button
@@ -427,7 +494,7 @@ const AdminLayout = () => {
                                 navigate("/admin/contacts");
                             }}
                             sx={{
-                                color: "#38BDF8",
+                                color: "#D4AF37",
                                 fontWeight: 700,
                                 textTransform: "none",
                                 ml: 1,

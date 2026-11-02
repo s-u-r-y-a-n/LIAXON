@@ -313,9 +313,13 @@ const AdminJobs = () => {
                         <IconButton
                             onClick={fetchJobs}
                             sx={{
-                                backgroundColor: "#FFFFFF",
-                                border: "1px solid #E2E8F0",
-                                "&:hover": { backgroundColor: "#F8FAFC" },
+                                backgroundColor: "#141414",
+                                border: "1px solid rgba(212, 175, 55, 0.25)",
+                                color: "#D4AF37",
+                                "&:hover": {
+                                    backgroundColor: "#1F1F1F",
+                                    borderColor: "#D4AF37",
+                                },
                             }}
                         >
                             <RefreshRoundedIcon fontSize="small" />
@@ -325,6 +329,13 @@ const AdminJobs = () => {
                         variant="contained"
                         startIcon={<AddRoundedIcon />}
                         onClick={handleOpenCreate}
+                        sx={{
+                            backgroundColor: "#D4AF37",
+                            color: "#0B0B0B",
+                            fontWeight: 700,
+                            textTransform: "none",
+                            "&:hover": { backgroundColor: "#E5C158" },
+                        }}
                     >
                         Create Job
                     </Button>
@@ -396,7 +407,7 @@ const AdminJobs = () => {
                             {loading ? (
                                 <TableRow>
                                     <TableCell colSpan={8} align="center" sx={{ py: 6 }}>
-                                        <CircularProgress size={32} sx={{ color: "#0F172A" }} />
+                                        <CircularProgress size={32} sx={{ color: "#D4AF37" }} />
                                     </TableCell>
                                 </TableRow>
                             ) : filteredJobs.length === 0 ? (
@@ -422,7 +433,9 @@ const AdminJobs = () => {
                                                     label={job.domain || "General"}
                                                     size="small"
                                                     sx={{
-                                                        backgroundColor: "#F1F5F9",
+                                                        backgroundColor: "rgba(212, 175, 55, 0.12)",
+                                                        color: "#D4AF37",
+                                                        border: "1px solid rgba(212, 175, 55, 0.25)",
                                                         fontWeight: 600,
                                                         fontSize: "0.75rem",
                                                     }}
@@ -435,7 +448,7 @@ const AdminJobs = () => {
 
                                             <TableCell sx={{ color: "text.secondary", fontSize: "0.85rem" }}>
                                                 <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                                                    <LocationOnRoundedIcon sx={{ fontSize: 16, color: "#94A3B8" }} />
+                                                    <LocationOnRoundedIcon sx={{ fontSize: 16, color: "#D4AF37" }} />
                                                     {job.location || "On-site"}
                                                 </Box>
                                             </TableCell>
@@ -451,11 +464,18 @@ const AdminJobs = () => {
                                                             size="small"
                                                             checked={Boolean(job.isActive)}
                                                             onChange={() => handleToggleActive(job)}
-                                                            color="primary"
+                                                            sx={{
+                                                                "& .MuiSwitch-switchBase.Mui-checked": {
+                                                                    color: "#D4AF37",
+                                                                },
+                                                                "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+                                                                    backgroundColor: "#D4AF37",
+                                                                },
+                                                            }}
                                                         />
                                                     }
                                                     label={
-                                                        <Typography variant="caption" sx={{ fontWeight: 600, color: job.isActive ? "#10B981" : "#94A3B8" }}>
+                                                        <Typography variant="caption" sx={{ fontWeight: 600, color: job.isActive ? "#D4AF37" : "#777777" }}>
                                                             {job.isActive ? "Active" : "Draft"}
                                                         </Typography>
                                                     }
@@ -471,7 +491,7 @@ const AdminJobs = () => {
                                                     <IconButton
                                                         size="small"
                                                         onClick={() => handleOpenEdit(job)}
-                                                        sx={{ color: "#2563EB" }}
+                                                        sx={{ color: "#D4AF37" }}
                                                     >
                                                         <EditRoundedIcon fontSize="small" />
                                                     </IconButton>
@@ -516,13 +536,20 @@ const AdminJobs = () => {
                 onClose={() => !submitting && setModalOpen(false)}
                 maxWidth="md"
                 fullWidth
-                PaperProps={{ sx: { borderRadius: 3 } }}
+                PaperProps={{
+                    sx: {
+                        borderRadius: 3,
+                        backgroundColor: "#141414",
+                        color: "#FFFFFF",
+                        border: "1px solid rgba(212, 175, 55, 0.25)",
+                    },
+                }}
             >
                 <form onSubmit={handleFormSubmit}>
-                    <DialogTitle sx={{ fontWeight: 700, pb: 1 }}>
+                    <DialogTitle sx={{ fontWeight: 700, pb: 1, color: "#FFFFFF" }}>
                         {modalMode === "create" ? "Post New Job Opening" : "Edit Job Posting"}
                     </DialogTitle>
-                    <DialogContent dividers>
+                    <DialogContent dividers sx={{ borderColor: "rgba(255, 255, 255, 0.1)" }}>
                         {formError && (
                             <Alert severity="error" sx={{ mb: 2.5, borderRadius: 2 }}>
                                 {formError}
@@ -615,7 +642,14 @@ const AdminJobs = () => {
                                                 onChange={(e) =>
                                                     setFormData({ ...formData, isActive: e.target.checked })
                                                 }
-                                                color="primary"
+                                                sx={{
+                                                    "& .MuiSwitch-switchBase.Mui-checked": {
+                                                        color: "#D4AF37",
+                                                    },
+                                                    "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+                                                        backgroundColor: "#D4AF37",
+                                                    },
+                                                }}
                                             />
                                         }
                                         label="Publish Immediately (Active)"
@@ -661,10 +695,11 @@ const AdminJobs = () => {
                             />
                         </Box>
                     </DialogContent>
-                    <DialogActions sx={{ p: 2 }}>
+                    <DialogActions sx={{ p: 2, borderColor: "rgba(255, 255, 255, 0.1)" }}>
                         <Button
                             onClick={() => setModalOpen(false)}
                             disabled={submitting}
+                            sx={{ color: "#A0A0A0" }}
                         >
                             Cancel
                         </Button>
@@ -672,9 +707,16 @@ const AdminJobs = () => {
                             type="submit"
                             variant="contained"
                             disabled={submitting}
+                            sx={{
+                                backgroundColor: "#D4AF37",
+                                color: "#0B0B0B",
+                                fontWeight: 700,
+                                textTransform: "none",
+                                "&:hover": { backgroundColor: "#E5C158" },
+                            }}
                         >
                             {submitting ? (
-                                <CircularProgress size={22} color="inherit" />
+                                <CircularProgress size={22} sx={{ color: "#0B0B0B" }} />
                             ) : modalMode === "create" ? (
                                 "Publish Job"
                             ) : (
@@ -689,22 +731,30 @@ const AdminJobs = () => {
             <Dialog
                 open={deleteDialogOpen}
                 onClose={() => setDeleteDialogOpen(false)}
-                PaperProps={{ sx: { borderRadius: 3, p: 1 } }}
+                PaperProps={{
+                    sx: {
+                        borderRadius: 3,
+                        p: 1,
+                        backgroundColor: "#141414",
+                        color: "#FFFFFF",
+                        border: "1px solid rgba(239, 68, 68, 0.3)",
+                    },
+                }}
             >
-                <DialogTitle sx={{ fontWeight: 700, color: "#0F172A" }}>
+                <DialogTitle sx={{ fontWeight: 700, color: "#FFFFFF" }}>
                     Confirm Deletion
                 </DialogTitle>
                 <DialogContent>
-                    <DialogContentText color="text.secondary">
+                    <DialogContentText sx={{ color: "#A0A0A0" }}>
                         Are you sure you want to delete the job posting for{" "}
-                        <strong>{jobToDelete?.title}</strong>? All associated public listings will be removed.
+                        <strong style={{ color: "#FFFFFF" }}>{jobToDelete?.title}</strong>? All associated public listings will be removed.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions sx={{ pb: 1, px: 2 }}>
                     <Button
                         onClick={() => setDeleteDialogOpen(false)}
                         disabled={deleting}
-                        sx={{ color: "#64748B" }}
+                        sx={{ color: "#A0A0A0" }}
                     >
                         Cancel
                     </Button>

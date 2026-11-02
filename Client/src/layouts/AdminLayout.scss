@@ -1,7 +1,10 @@
+@use '../styles/variables' as *;
+
 .admin-layout {
   display: flex;
   min-height: 100vh;
-  background-color: #f8fafc;
+  background-color: #0d0d0d;
+  color: #ffffff;
 
   .admin-sidebar {
     width: 260px;
@@ -11,44 +14,19 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 24px 20px;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      padding: 20px 18px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      transition: opacity 0.2s ease;
 
-      .brand-icon {
-        width: 36px;
-        height: 36px;
-        background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        font-weight: 800;
-        font-size: 1.1rem;
-        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+      &:hover {
+        opacity: 0.92;
       }
 
-      .brand-text {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #0f172a;
-        letter-spacing: -0.02em;
-
-        span {
-          color: #2563eb;
-          font-weight: 800;
-        }
-      }
-
-      .portal-badge {
-        font-size: 0.65rem;
-        background: #e2e8f0;
-        color: #475569;
-        padding: 2px 6px;
-        border-radius: 4px;
-        text-transform: uppercase;
-        font-weight: 700;
-        margin-left: auto;
+      .admin-sidebar-logo {
+        max-height: 38px;
+        width: auto;
+        object-fit: contain;
+        display: block;
       }
     }
 
@@ -61,7 +39,7 @@
       .nav-section-title {
         font-size: 0.72rem;
         font-weight: 700;
-        color: #94a3b8;
+        color: #777777;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         padding: 8px 12px 4px;
@@ -70,37 +48,38 @@
       .nav-item {
         border-radius: 8px;
         padding: 10px 14px;
-        color: #64748b;
+        color: #c0c0c0;
         font-weight: 500;
         font-size: 0.925rem;
         transition: all 0.2s ease-in-out;
 
         .nav-icon {
           min-width: 36px;
-          color: #64748b;
+          color: #888888;
           transition: color 0.2s ease-in-out;
         }
 
         &:hover {
-          background-color: #f1f5f9;
-          color: #0f172a;
+          background-color: rgba(212, 175, 55, 0.08);
+          color: $color-accent-gold;
 
           .nav-icon {
-            color: #2563eb;
+            color: $color-accent-gold;
           }
         }
 
         &.active {
-          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-          color: #ffffff;
-          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+          background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.06) 100%);
+          color: $color-accent-gold;
+          border: 1px solid rgba(212, 175, 55, 0.35);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
 
           .nav-icon {
-            color: #38bdf8;
+            color: $color-accent-gold;
           }
 
           .MuiTypography-root {
-            font-weight: 600;
+            font-weight: 700;
           }
         }
       }
@@ -109,13 +88,15 @@
     .sidebar-footer {
       margin-top: auto;
       padding: 16px;
-      border-top: 1px solid rgba(226, 232, 240, 0.8);
-      background-color: #ffffff;
+      border-top: 1px solid rgba(212, 175, 55, 0.18);
+      background-color: #0b0b0b;
 
       .admin-user-card {
         display: flex;
         align-items: center;
         gap: 12px;
+        border-radius: 8px;
+        transition: background-color 0.2s;
 
         .user-info {
           overflow: hidden;
@@ -124,7 +105,7 @@
           .user-name {
             font-size: 0.875rem;
             font-weight: 600;
-            color: #0f172a;
+            color: #ffffff;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -132,7 +113,7 @@
 
           .user-role {
             font-size: 0.75rem;
-            color: #64748b;
+            color: #a0a0a0;
             text-transform: capitalize;
           }
         }
@@ -141,11 +122,10 @@
   }
 
   .admin-header {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid #e2e8f0;
-    color: #0f172a;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    background-color: #0b0b0b;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 
     .header-toolbar {
       display: flex;
@@ -173,6 +153,7 @@
     flex-direction: column;
     min-height: 100vh;
     min-width: 0;
+    background-color: #0e0e0e;
 
     .admin-content {
       flex-grow: 1;
@@ -181,6 +162,68 @@
       @media (max-width: 600px) {
         padding: 16px 16px 36px;
       }
+    }
+  }
+}
+
+// Global modal & dropdown dark gold styling for admin portal
+.MuiDialog-paper {
+  background-color: #141414 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(212, 175, 55, 0.25) !important;
+
+  .MuiInputLabel-root {
+    color: #a0a0a0;
+
+    &.Mui-focused {
+      color: #d4af37;
+    }
+  }
+
+  .MuiOutlinedInput-root {
+    background: #1a1a1a;
+    color: #ffffff;
+
+    .MuiOutlinedInput-notchedOutline {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    &:hover .MuiOutlinedInput-notchedOutline {
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-color: #d4af37;
+    }
+
+    svg {
+      color: #a0a0a0;
+    }
+  }
+
+  .MuiDialogTitle-root {
+    color: #ffffff;
+  }
+}
+
+.MuiMenu-paper {
+  background-color: #161616 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+
+  .MuiMenuItem-root {
+    color: #e0e0e0;
+    font-size: 0.875rem;
+
+    &:hover {
+      background-color: rgba(212, 175, 55, 0.1) !important;
+      color: #d4af37;
+    }
+
+    &.Mui-selected {
+      background-color: rgba(212, 175, 55, 0.18) !important;
+      color: #d4af37;
+      font-weight: 600;
     }
   }
 }

@@ -1,3 +1,5 @@
+@use "../../../styles/variables" as *;
+
 .admin-jobs-page {
   display: flex;
   flex-direction: column;
@@ -14,20 +16,20 @@
       .page-title {
         font-size: 1.6rem;
         font-weight: 800;
-        color: #0f172a;
+        color: #ffffff;
         letter-spacing: -0.02em;
       }
 
       .page-sub {
-        color: #64748b;
+        color: #a0a0a0;
         font-size: 0.9rem;
       }
     }
   }
 
   .jobs-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: #141414;
+    border: 1px solid rgba(212, 175, 55, 0.18);
     border-radius: 14px;
     overflow: hidden;
 
@@ -38,7 +40,37 @@
       padding: 16px 20px;
       gap: 16px;
       flex-wrap: wrap;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+      .MuiInputLabel-root {
+        color: #a0a0a0;
+
+        &.Mui-focused {
+          color: #d4af37;
+        }
+      }
+
+      .MuiOutlinedInput-root {
+        background: #1a1a1a;
+        color: #ffffff;
+        border-radius: 8px;
+
+        .MuiOutlinedInput-notchedOutline {
+          border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        &:hover .MuiOutlinedInput-notchedOutline {
+          border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        &.Mui-focused .MuiOutlinedInput-notchedOutline {
+          border-color: #d4af37;
+        }
+
+        svg {
+          color: #a0a0a0;
+        }
+      }
 
       .search-box {
         max-width: 320px;
@@ -51,10 +83,46 @@
     }
 
     .jobs-table {
+      .MuiTableHead-root .MuiTableCell-root {
+        background: #111111;
+        color: #a0a0a0;
+        font-weight: 700;
+        font-size: 0.775rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      }
+
+      .MuiTableBody-root .MuiTableCell-root {
+        color: #e0e0e0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .MuiTableRow-root.MuiTableRow-hover:hover {
+        background-color: rgba(212, 175, 55, 0.04) !important;
+      }
+
       .job-title-cell {
         font-weight: 700;
-        color: #0f172a;
+        color: #ffffff;
         font-size: 0.925rem;
+      }
+    }
+
+    .MuiTablePagination-root {
+      color: #a0a0a0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+      .MuiIconButton-root {
+        color: #a0a0a0;
+
+        &:hover {
+          color: #d4af37;
+        }
+
+        &.Mui-disabled {
+          color: rgba(255, 255, 255, 0.2);
+        }
       }
     }
   }

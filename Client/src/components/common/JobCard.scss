@@ -3,7 +3,7 @@
 
 .job-card-item {
   background: $color-bg-white;
-  border: 1px solid $color-border-light;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: $radius-lg;
   padding: 28px;
   display: flex;
@@ -34,8 +34,9 @@
       .chip-dept {
         font-size: 0.725rem;
         font-weight: 700;
-        background: $color-blue-light;
-        color: $color-blue-primary;
+        background: rgba(212, 175, 55, 0.12);
+        color: $color-accent-gold;
+        border: 1px solid rgba(212, 175, 55, 0.25);
         padding: 3px 8px;
         border-radius: 4px;
       }
@@ -64,6 +65,10 @@
       display: flex;
       align-items: center;
       gap: 4px;
+
+      svg {
+        color: $color-accent-gold;
+      }
     }
   }
 
@@ -78,30 +83,46 @@
     overflow: hidden;
   }
 
-  .job-requirements-summary {
-    margin-bottom: 24px;
+  .job-section-block {
+    margin-bottom: 16px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 
-    .req-title {
-      font-size: 0.775rem;
+    .section-label {
+      font-size: 0.8rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: $color-text-light;
-      margin-bottom: 8px;
-    }
-
-    .req-tags {
+      letter-spacing: 0.04em;
+      color: $color-text-main;
+      margin-bottom: 6px;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 6px;
 
-      .req-pill {
-        font-size: 0.75rem;
-        background: $color-bg-light;
-        border: 1px solid $color-border-light;
-        padding: 2px 8px;
-        border-radius: 4px;
-        color: $color-text-main;
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        background-color: $color-accent-gold;
+        border-radius: 50%;
+      }
+    }
+
+    .section-list {
+      margin: 0;
+      padding-left: 18px;
+      list-style-type: disc;
+
+      li {
+        font-size: 0.85rem;
+        color: $color-text-muted;
+        line-height: 1.5;
+        margin-bottom: 4px;
+
+        &::marker {
+          color: $color-accent-gold;
+        }
       }
     }
   }
@@ -112,7 +133,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 16px;
-    border-top: 1px solid $color-border-subtle;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
 
     .posted-date {
       font-size: 0.775rem;

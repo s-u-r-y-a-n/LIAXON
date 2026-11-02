@@ -6,6 +6,23 @@ import WorkHistoryRoundedIcon from "@mui/icons-material/WorkHistoryRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import "./JobCard.scss";
 
+const parseList = (val) => {
+    if (!val) return [];
+    if (Array.isArray(val)) {
+        return val
+            .flatMap((item) => (typeof item === "string" ? item.split("\n") : []))
+            .map((s) => s.replace(/^[•\-\*]\s*/, "").trim())
+            .filter(Boolean);
+    }
+    if (typeof val === "string") {
+        return val
+            .split("\n")
+            .map((s) => s.replace(/^[•\-\*]\s*/, "").trim())
+            .filter(Boolean);
+    }
+    return [];
+};
+
 const JobCard = ({ job, onApply, index = 0 }) => {
     const formatDate = (dateStr) => {
         if (!dateStr) return "Recently posted";
@@ -19,6 +36,9 @@ const JobCard = ({ job, onApply, index = 0 }) => {
             return "Recently posted";
         }
     };
+
+    const responsibilities = parseList(job.responsibilities);
+    const requirements = parseList(job.requirements);
 
     return (
         <motion.div
@@ -49,16 +69,25 @@ const JobCard = ({ job, onApply, index = 0 }) => {
 
             <p className="job-desc">{job.description}</p>
 
-            {job.requirements && job.requirements.length > 0 && (
-                <div className="job-requirements-summary">
-                    <div className="req-title">Core Competencies:</div>
-                    <div className="req-tags">
-                        {job.requirements.slice(0, 3).map((req, idx) => (
-                            <span key={idx} className="req-pill">
-                                {req.replace(/^[•\-\*]\s*/, "")}
-                            </span>
+            {responsibilities.length > 0 && (
+                <div className="job-section-block">
+                    <div className="section-label">Key Responsibilities:</div>
+                    <ul className="section-list">
+                        {responsibilities.map((resp, idx) => (
+                            <li key={idx}>{resp}</li>
                         ))}
-                    </div>
+                    </ul>
+                </div>
+            )}
+
+            {requirements.length > 0 && (
+                <div className="job-section-block">
+                    <div className="section-label">Requirements & Skills:</div>
+                    <ul className="section-list">
+                        {requirements.map((req, idx) => (
+                            <li key={idx}>{req}</li>
+                        ))}
+                    </ul>
                 </div>
             )}
 
@@ -70,9 +99,10 @@ const JobCard = ({ job, onApply, index = 0 }) => {
                     endIcon={<ArrowForwardRoundedIcon />}
                     onClick={() => onApply(job)}
                     sx={{
-                        backgroundColor: "#0F172A",
-                        fontWeight: 600,
-                        "&:hover": { backgroundColor: "#1E293B" },
+                        backgroundColor: "#0B0B0B",
+                        color: "#FFFFFF",
+                        fontWeight: 700,
+                        "&:hover": { backgroundColor: "#D4AF37", color: "#0B0B0B" },
                     }}
                 >
                     Apply Now

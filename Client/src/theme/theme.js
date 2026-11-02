@@ -4,21 +4,21 @@ const theme = createTheme({
     palette: {
         mode: "light",
         primary: {
-            main: "#0F172A",
-            light: "#1E293B",
-            dark: "#020617",
+            main: "#0B0B0B", // Deep Pitch Black
+            light: "#1A1A1A",
+            dark: "#000000",
             contrastText: "#FFFFFF",
         },
         secondary: {
-            main: "#2563EB",
-            light: "#3B82F6",
-            dark: "#1D4ED8",
-            contrastText: "#FFFFFF",
+            main: "#D4AF37", // Liaxon Official Metallic Gold
+            light: "#E5C158",
+            dark: "#B89628",
+            contrastText: "#0B0B0B",
         },
         info: {
-            main: "#0EA5E9",
-            light: "#E0F2FE",
-            dark: "#0369A1",
+            main: "#D4AF37",
+            light: "rgba(212, 175, 55, 0.15)",
+            dark: "#B89628",
         },
         success: {
             main: "#10B981",
@@ -26,9 +26,9 @@ const theme = createTheme({
             dark: "#047857",
         },
         warning: {
-            main: "#F59E0B",
-            light: "#FFFBEB",
-            dark: "#B45309",
+            main: "#D4AF37",
+            light: "rgba(212, 175, 55, 0.12)",
+            dark: "#B89628",
         },
         error: {
             main: "#EF4444",
@@ -36,15 +36,15 @@ const theme = createTheme({
             dark: "#B91C1C",
         },
         background: {
-            default: "#F8FAFC",
+            default: "#FFFFFF",
             paper: "#FFFFFF",
         },
         text: {
-            primary: "#0F172A",
-            secondary: "#64748B",
-            disabled: "#94A3B8",
+            primary: "#0B0B0B",
+            secondary: "#555555",
+            disabled: "#999999",
         },
-        divider: "#E2E8F0",
+        divider: "rgba(212, 175, 55, 0.2)",
     },
     typography: {
         fontFamily: [
@@ -89,13 +89,22 @@ const theme = createTheme({
                     padding: "8px 18px",
                     boxShadow: "none",
                     "&:hover": {
-                        boxShadow: "0 4px 12px rgba(15, 23, 42, 0.12)",
+                        boxShadow: "0 4px 12px rgba(212, 175, 55, 0.2)",
                     },
                 },
                 containedPrimary: {
-                    backgroundColor: "#0F172A",
+                    backgroundColor: "#0B0B0B",
+                    color: "#FFFFFF",
                     "&:hover": {
-                        backgroundColor: "#1E293B",
+                        backgroundColor: "#1A1A1A",
+                    },
+                },
+                containedSecondary: {
+                    backgroundColor: "#D4AF37",
+                    color: "#0B0B0B",
+                    fontWeight: 700,
+                    "&:hover": {
+                        backgroundColor: "#E5C158",
                     },
                 },
             },
@@ -104,7 +113,7 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 12,
-                    border: "1px solid #E2E8F0",
+                    border: "1px solid rgba(0, 0, 0, 0.08)",
                     boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03)",
                 },
             },
@@ -122,12 +131,12 @@ const theme = createTheme({
         MuiTableCell: {
             styleOverrides: {
                 root: {
-                    borderColor: "#F1F5F9",
+                    borderColor: "rgba(0, 0, 0, 0.06)",
                     padding: "14px 16px",
                 },
                 head: {
-                    backgroundColor: "#F8FAFC",
-                    color: "#475569",
+                    backgroundColor: "#F8F8F8",
+                    color: "#555555",
                     fontWeight: 700,
                     fontSize: "0.8125rem",
                     textTransform: "uppercase",

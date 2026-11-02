@@ -6,6 +6,7 @@
     background: $gradient-hero;
     color: #ffffff;
     padding: 72px 0 84px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
 
     .hero-container {
       @include container;
@@ -15,15 +16,15 @@
         align-items: center;
         gap: 8px;
         font-size: 0.85rem;
-        color: #94a3b8;
+        color: #a0a0a0;
         margin-bottom: 20px;
 
         a {
-          color: #94a3b8;
+          color: #a0a0a0;
           text-decoration: none;
 
           &:hover {
-            color: #38bdf8;
+            color: $color-accent-gold;
           }
         }
 
@@ -40,11 +41,11 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
         padding: 5px 14px;
-        background: rgba(37, 99, 235, 0.2);
-        color: #38bdf8;
+        background: rgba(212, 175, 55, 0.15);
+        color: $color-accent-gold;
         border-radius: $radius-full;
         margin-bottom: 16px;
-        border: 1px solid rgba(56, 189, 248, 0.3);
+        border: 1px solid rgba(212, 175, 55, 0.3);
       }
 
       h1 {
@@ -54,6 +55,7 @@
         margin-bottom: 8px;
         max-width: 900px;
         line-height: 1.2;
+        color: #ffffff;
 
         @media (max-width: 768px) {
           font-size: 2rem;
@@ -63,13 +65,13 @@
       .hero-tagline-sub {
         font-size: 1.25rem;
         font-weight: 700;
-        color: #38bdf8;
+        color: $color-accent-hover;
         margin-bottom: 16px;
       }
 
       .hero-sub {
         font-size: 1.15rem;
-        color: #cbd5e1;
+        color: #c0c0c0;
         max-width: 780px;
         line-height: 1.6;
         margin: 0;
@@ -101,7 +103,7 @@
           .block-title {
             font-size: 1.4rem;
             font-weight: 800;
-            color: $color-navy;
+            color: #0b0b0b;
             margin-bottom: 20px;
             letter-spacing: -0.01em;
           }
@@ -124,15 +126,16 @@
             }
 
             .offering-card {
-              background: #F8FAFC;
-              border: 1px solid #E2E8F0;
+              background: #fafafa;
+              border: 1px solid rgba(0, 0, 0, 0.08);
               border-radius: 12px;
               padding: 20px 18px;
               transition: transform 0.2s, box-shadow 0.2s;
 
               &:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+                border-color: rgba(212, 175, 55, 0.3);
               }
 
               .offering-header {
@@ -142,21 +145,21 @@
                 margin-bottom: 8px;
 
                 .check-icon {
-                  color: $color-blue-primary;
+                  color: $color-accent-gold;
                   font-size: 20px;
                 }
 
                 h4 {
                   font-size: 1rem;
                   font-weight: 700;
-                  color: $color-navy;
+                  color: #0b0b0b;
                   margin: 0;
                 }
               }
 
               p {
                 font-size: 0.875rem;
-                color: #64748B;
+                color: #64748b;
                 line-height: 1.5;
                 margin: 0;
               }
@@ -172,19 +175,23 @@
             .process-step-item {
               display: flex;
               align-items: center;
-
               gap: 16px;
               background: #ffffff;
-              border: 1px solid #E2E8F0;
+              border: 1px solid rgba(0, 0, 0, 0.08);
               border-radius: 12px;
               padding: 16px 20px;
+              transition: border-color 0.2s;
+
+              &:hover {
+                border-color: rgba(212, 175, 55, 0.3);
+              }
 
               .step-circle {
                 width: 36px;
                 height: 36px;
                 border-radius: 50%;
-                background: $color-blue-primary;
-                color: #ffffff;
+                background: $gradient-gold;
+                color: #0b0b0b;
                 font-weight: 800;
                 font-size: 0.9rem;
                 @include flex-center;
@@ -197,13 +204,13 @@
                 h4 {
                   font-size: 1.05rem;
                   font-weight: 700;
-                  color: $color-navy;
+                  color: #0b0b0b;
                   margin: 0 0 4px 0;
                 }
 
                 p {
                   font-size: 0.9rem;
-                  color: #64748B;
+                  color: #64748b;
                   line-height: 1.5;
                   margin: 0;
                 }
@@ -229,12 +236,12 @@
               align-items: flex-start;
               gap: 12px;
               font-size: 0.95rem;
-              color: $color-navy;
+              color: #0b0b0b;
               font-weight: 600;
               line-height: 1.5;
 
               .check-icon {
-                color: #10B981;
+                color: $color-accent-gold;
                 font-size: 20px;
                 flex-shrink: 0;
                 margin-top: 1px;
@@ -249,12 +256,12 @@
             gap: 10px;
 
             .audience-pill {
-              background: #EFF6FF;
-              border-left: 4px solid $color-blue-primary;
+              background: rgba(212, 175, 55, 0.08);
+              border-left: 4px solid $color-accent-gold;
               padding: 12px 18px;
               border-radius: 0 8px 8px 0;
               font-size: 0.95rem;
-              color: $color-navy;
+              color: #0b0b0b;
               font-weight: 600;
             }
           }
@@ -267,44 +274,54 @@
         gap: 28px;
 
         .cta-sidebar-card {
-          background: $gradient-hero;
+          background: #0b0b0b;
+          border: 1px solid rgba(212, 175, 55, 0.25);
           color: #ffffff;
           padding: 36px 30px;
           border-radius: $radius-lg;
-          box-shadow: $shadow-xl;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 
           h3 {
             font-size: 1.35rem;
             font-weight: 800;
             margin-bottom: 12px;
+            color: #ffffff;
           }
 
           p {
             font-size: 0.925rem;
-            color: #cbd5e1;
+            color: #c0c0c0;
             line-height: 1.6;
             margin-bottom: 24px;
           }
 
           .request-btn {
-            background: $gradient-accent;
-            color: #ffffff;
-            font-weight: 700;
+            background: $gradient-gold;
+            color: #0b0b0b;
+            font-weight: 800;
             width: 100%;
             padding: 12px;
+            border-radius: 9999px;
+            box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+            transition: all 0.2s ease;
+
+            &:hover {
+              background: #f3e5ab;
+              box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            }
           }
         }
 
         .contact-quick-card {
-          background: $color-bg-light;
-          border: 1px solid $color-border-light;
+          background: #fafafa;
+          border: 1px solid rgba(0, 0, 0, 0.08);
           padding: 28px 26px;
           border-radius: $radius-lg;
 
           h4 {
             font-size: 1.05rem;
             font-weight: 700;
-            color: $color-navy;
+            color: #0b0b0b;
             margin-bottom: 16px;
           }
 
@@ -321,10 +338,14 @@
               align-items: center;
               gap: 10px;
               font-size: 0.9rem;
-              color: #475569;
+              color: #555555;
+
+              svg {
+                color: $color-accent-gold;
+              }
 
               a {
-                color: $color-blue-primary;
+                color: $color-accent-gold;
                 text-decoration: none;
                 font-weight: 600;
 

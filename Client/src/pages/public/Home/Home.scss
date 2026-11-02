@@ -17,7 +17,7 @@
       right: -100px;
       width: 550px;
       height: 550px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -28,7 +28,7 @@
       left: -100px;
       width: 500px;
       height: 500px;
-      background: radial-gradient(circle, rgba(14, 165, 233, 0.16) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(229, 193, 88, 0.12) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -52,9 +52,9 @@
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: rgba(37, 99, 235, 0.18);
-          border: 1px solid rgba(56, 189, 248, 0.35);
-          color: #38bdf8;
+          background: rgba(212, 175, 55, 0.15);
+          border: 1px solid rgba(212, 175, 55, 0.35);
+          color: $color-accent-gold;
           font-size: 0.82rem;
           font-weight: 700;
           text-transform: uppercase;
@@ -80,7 +80,7 @@
         .hero-tagline-highlight {
           font-size: 1.35rem;
           font-weight: 700;
-          color: #38bdf8;
+          color: $color-accent-hover;
           margin-bottom: 20px;
           letter-spacing: -0.01em;
         }
@@ -88,7 +88,7 @@
         .hero-subtitle {
           font-size: 1.1rem;
           line-height: 1.65;
-          color: #94a3b8;
+          color: #c0c0c0;
           margin-bottom: 36px;
           max-width: 600px;
 
@@ -108,29 +108,35 @@
           }
 
           .primary-cta {
-            background: $color-blue-primary;
-            color: #ffffff;
-            font-weight: 700;
+            background: $gradient-gold;
+            color: #0b0b0b;
+            font-weight: 800;
             padding: 12px 28px;
-            border-radius: 8px;
+            border-radius: 9999px;
             font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.25s ease;
 
             &:hover {
-              background: $color-blue-hover;
+              background: #f3e5ab;
+              box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+              transform: translateY(-2px);
             }
           }
 
           .secondary-cta {
-            border-color: rgba(255, 255, 255, 0.35);
+            border-color: rgba(212, 175, 55, 0.4);
             color: #ffffff;
             font-weight: 700;
             padding: 12px 26px;
-            border-radius: 8px;
+            border-radius: 9999px;
             font-size: 0.95rem;
+            transition: all 0.2s ease;
 
             &:hover {
-              border-color: #ffffff;
-              background-color: rgba(255, 255, 255, 0.08);
+              border-color: $color-accent-gold;
+              color: $color-accent-gold;
+              background-color: rgba(212, 175, 55, 0.08);
             }
           }
         }
@@ -142,12 +148,12 @@
         justify-content: center;
 
         .visual-card-main {
-          background: rgba(30, 41, 59, 0.75);
+          background: rgba(24, 24, 24, 0.85);
           backdrop-filter: blur(16px);
-          border: 1px solid rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(212, 175, 55, 0.25);
           border-radius: 20px;
           padding: 32px 28px;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
           width: 100%;
           max-width: 460px;
 
@@ -160,9 +166,9 @@
             .pulse-dot {
               width: 12px;
               height: 12px;
-              background-color: #10b981;
+              background-color: $color-accent-gold;
               border-radius: 50%;
-              box-shadow: 0 0 10px #10b981;
+              box-shadow: 0 0 10px $color-accent-gold;
             }
 
             .visual-title {
@@ -182,17 +188,22 @@
               display: flex;
               align-items: flex-start;
               gap: 14px;
-              background: rgba(15, 23, 42, 0.6);
+              background: rgba(12, 12, 12, 0.7);
               border: 1px solid rgba(255, 255, 255, 0.08);
               padding: 10px 14px;
               border-radius: 10px;
+              transition: border-color 0.2s ease;
+
+              &:hover {
+                border-color: rgba(212, 175, 55, 0.3);
+              }
 
               .pill-num {
                 width: 30px;
                 height: 30px;
                 border-radius: 6px;
-                background: $color-blue-primary;
-                color: #ffffff;
+                background: $gradient-gold;
+                color: #0b0b0b;
                 font-weight: 800;
                 font-size: 0.85rem;
                 @include flex-center;
@@ -209,7 +220,7 @@
 
                 .pill-desc {
                   font-size: 0.8rem;
-                  color: #94a3b8;
+                  color: #a0a0a0;
                   line-height: 1.4;
                 }
               }
@@ -224,7 +235,7 @@
   .statement-section {
     background: #ffffff;
     padding: 64px 0;
-    border-bottom: 1px solid $color-border-light;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 
     .statement-container {
       @include container;
@@ -233,8 +244,8 @@
 
       .statement-badge {
         display: inline-block;
-        background: #EFF6FF;
-        color: $color-blue-primary;
+        background: rgba(212, 175, 55, 0.12);
+        color: $color-accent-gold;
         font-weight: 800;
         font-size: 0.95rem;
         padding: 6px 18px;
@@ -242,12 +253,13 @@
         margin-bottom: 16px;
         letter-spacing: 0.05em;
         text-transform: uppercase;
+        border: 1px solid rgba(212, 175, 55, 0.25);
       }
 
       .statement-lead {
         font-size: 1.25rem;
         line-height: 1.7;
-        color: $color-navy;
+        color: #0b0b0b;
         font-weight: 500;
         margin-bottom: 24px;
 
@@ -260,13 +272,17 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: #F8FAFC;
-        border: 1px solid #E2E8F0;
+        background: #fafafa;
+        border: 1px solid rgba(0, 0, 0, 0.08);
         padding: 8px 20px;
         border-radius: 30px;
         font-size: 0.9rem;
         color: #475569;
         font-weight: 600;
+
+        svg {
+          color: $color-accent-gold;
+        }
       }
     }
   }
@@ -274,7 +290,7 @@
   // 3. Services Showcase Section
   .services-section {
     padding: 96px 0;
-    background-color: $color-bg-light;
+    background-color: #fafafa;
 
     .services-container {
       @include container;
@@ -300,11 +316,13 @@
     }
   }
 
-  // 4. Why Choose Us Section
+  // 4. Why Choose Us Section (Deep Pitch Black with Gold Accents)
   .why-choose-section {
     padding: 96px 0;
-    background: $color-navy-dark;
+    background: #070707;
     color: #ffffff;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
 
     .why-container {
       @include container;
@@ -332,8 +350,9 @@
               width: 34px;
               height: 34px;
               border-radius: 50%;
-              background: rgba(14, 165, 233, 0.15);
-              color: $color-cyan;
+              background: rgba(212, 175, 55, 0.15);
+              color: $color-accent-gold;
+              border: 1px solid rgba(212, 175, 55, 0.3);
               @include flex-center;
               flex-shrink: 0;
             }
@@ -348,7 +367,7 @@
 
               p {
                 font-size: 0.9rem;
-                color: #94a3b8;
+                color: #a0a0a0;
                 margin: 0;
                 line-height: 1.5;
               }
@@ -358,15 +377,15 @@
       }
 
       .why-highlight-card {
-        background: rgba(30, 41, 59, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(24, 24, 24, 0.9);
+        border: 1px solid rgba(212, 175, 55, 0.25);
         border-radius: 20px;
         padding: 40px 36px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
 
         .badge-gold {
           display: inline-block;
-          color: #38bdf8;
+          color: $color-accent-hover;
           font-weight: 700;
           font-size: 0.85rem;
           text-transform: uppercase;
@@ -384,20 +403,24 @@
 
         p {
           font-size: 0.95rem;
-          color: #cbd5e1;
+          color: #c0c0c0;
           line-height: 1.65;
           margin-bottom: 28px;
         }
 
         .cta-btn {
-          background: $gradient-accent;
-          color: #ffffff;
-          font-weight: 700;
-          padding: 12px 26px;
-          border-radius: 8px;
+          background: $gradient-gold;
+          color: #0b0b0b;
+          font-weight: 800;
+          padding: 12px 28px;
+          border-radius: 9999px;
+          box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+          transition: all 0.2s ease;
 
           &:hover {
-            opacity: 0.95;
+            background: #f3e5ab;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-1px);
           }
         }
       }
@@ -431,7 +454,7 @@
 
         .stage-card {
           background: #ffffff;
-          border: 1px solid $color-border-light;
+          border: 1px solid rgba(0, 0, 0, 0.08);
           border-radius: $radius-lg;
           padding: 28px 20px;
           position: relative;
@@ -440,7 +463,7 @@
           .stage-badge {
             font-size: 1.6rem;
             font-weight: 900;
-            color: rgba(37, 99, 235, 0.2);
+            color: rgba(212, 175, 55, 0.25);
             position: absolute;
             top: 18px;
             right: 18px;
@@ -449,7 +472,7 @@
           .stage-name {
             font-size: 1.15rem;
             font-weight: 800;
-            color: $color-navy;
+            color: #0b0b0b;
             margin-bottom: 10px;
           }
 
@@ -466,7 +489,7 @@
   // 6. FAQ Section
   .faq-section {
     padding: 88px 0;
-    background: $color-bg-light;
+    background: #fafafa;
 
     .faq-container {
       @include container;
@@ -486,6 +509,7 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
 
     &::before {
       content: '';
@@ -495,7 +519,7 @@
       transform: translateX(-50%);
       width: 600px;
       height: 100%;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -518,7 +542,7 @@
 
       .banner-subtext {
         font-size: 1.15rem;
-        color: #cbd5e1;
+        color: #c0c0c0;
         margin-bottom: 28px;
         line-height: 1.6;
       }
@@ -534,19 +558,24 @@
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: rgba(255, 255, 255, 0.08);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          color: #38bdf8;
+          background: rgba(212, 175, 55, 0.1);
+          border: 1px solid rgba(212, 175, 55, 0.3);
+          color: $color-accent-hover;
           font-weight: 700;
           font-size: 0.95rem;
-          padding: 8px 18px;
+          padding: 8px 20px;
           border-radius: 30px;
           text-decoration: none;
-          transition: background-color 0.2s;
+          transition: all 0.2s ease;
+
+          svg {
+            color: $color-accent-gold;
+          }
 
           &:hover {
-            background: rgba(255, 255, 255, 0.16);
+            background: rgba(212, 175, 55, 0.2);
             color: #ffffff;
+            border-color: $color-accent-gold;
           }
         }
       }
@@ -558,27 +587,33 @@
         flex-wrap: wrap;
 
         .btn-white {
-          background-color: #ffffff;
-          color: $color-navy;
+          background: $gradient-gold;
+          color: #0b0b0b;
           font-weight: 800;
           padding: 12px 30px;
-          border-radius: 8px;
+          border-radius: 9999px;
+          box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+          transition: all 0.2s ease;
 
           &:hover {
-            background-color: #f1f5f9;
+            background: #f3e5ab;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-1px);
           }
         }
 
         .btn-outline {
-          border-color: rgba(255, 255, 255, 0.35);
+          border-color: rgba(212, 175, 55, 0.4);
           color: #ffffff;
           font-weight: 700;
           padding: 12px 26px;
-          border-radius: 8px;
+          border-radius: 9999px;
+          transition: all 0.2s ease;
 
           &:hover {
-            border-color: #ffffff;
-            background-color: rgba(255, 255, 255, 0.12);
+            border-color: $color-accent-gold;
+            color: $color-accent-gold;
+            background-color: rgba(212, 175, 55, 0.08);
           }
         }
       }

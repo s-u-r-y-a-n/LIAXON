@@ -122,19 +122,19 @@ const AdminDashboard = () => {
         switch (status) {
             case "New":
             case "Applied":
-                return { bg: "#EFF6FF", text: "#2563EB", border: "#BFDBFE" };
+                return { bg: "rgba(212, 175, 55, 0.12)", text: "#D4AF37", border: "rgba(212, 175, 55, 0.3)" };
             case "In Review":
             case "Under Review":
-                return { bg: "#FFFBEB", text: "#D97706", border: "#FDE68A" };
+                return { bg: "rgba(245, 158, 11, 0.12)", text: "#F59E0B", border: "rgba(245, 158, 11, 0.3)" };
             case "Shortlisted":
             case "Contacted":
             case "Hired":
             case "Resolved":
-                return { bg: "#ECFDF5", text: "#059669", border: "#A7F3D0" };
+                return { bg: "rgba(16, 185, 129, 0.12)", text: "#10B981", border: "rgba(16, 185, 129, 0.3)" };
             case "Rejected":
-                return { bg: "#FEF2F2", text: "#DC2626", border: "#FECACA" };
+                return { bg: "rgba(239, 68, 68, 0.12)", text: "#EF4444", border: "rgba(239, 68, 68, 0.3)" };
             default:
-                return { bg: "#F1F5F9", text: "#475569", border: "#E2E8F0" };
+                return { bg: "rgba(255, 255, 255, 0.05)", text: "#A0A0A0", border: "rgba(255, 255, 255, 0.1)" };
         }
     };
 
@@ -168,9 +168,13 @@ const AdminDashboard = () => {
                         <IconButton
                             onClick={fetchDashboardData}
                             sx={{
-                                border: "1px solid #E2E8F0",
-                                backgroundColor: "#FFFFFF",
-                                "&:hover": { backgroundColor: "#F8FAFC" },
+                                border: "1px solid rgba(212, 175, 55, 0.25)",
+                                backgroundColor: "#141414",
+                                color: "#D4AF37",
+                                "&:hover": {
+                                    backgroundColor: "#1F1F1F",
+                                    borderColor: "#D4AF37",
+                                },
                             }}
                         >
                             <RefreshRoundedIcon fontSize="small" />
@@ -180,6 +184,13 @@ const AdminDashboard = () => {
                         variant="contained"
                         onClick={() => navigate("/admin/jobs")}
                         startIcon={<WorkRoundedIcon />}
+                        sx={{
+                            backgroundColor: "#D4AF37",
+                            color: "#0B0B0B",
+                            fontWeight: 700,
+                            textTransform: "none",
+                            "&:hover": { backgroundColor: "#E5C158" },
+                        }}
                     >
                         Post New Job
                     </Button>
@@ -473,12 +484,13 @@ const AdminDashboard = () => {
                     variant="filled"
                     sx={{
                         width: "100%",
-                        backgroundColor: "#0F172A",
+                        backgroundColor: "#111111",
                         color: "#FFFFFF",
-                        boxShadow: "0 10px 25px -5px rgba(15, 23, 42, 0.4)",
+                        border: "1px solid rgba(212, 175, 55, 0.3)",
+                        boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.6)",
                         borderRadius: 2,
                         alignItems: "center",
-                        "& .MuiAlert-icon": { color: "#38BDF8" },
+                        "& .MuiAlert-icon": { color: "#D4AF37" },
                     }}
                     action={
                         <Button
@@ -489,7 +501,7 @@ const AdminDashboard = () => {
                                 navigate("/admin/contacts");
                             }}
                             sx={{
-                                color: "#38BDF8",
+                                color: "#D4AF37",
                                 fontWeight: 700,
                                 textTransform: "none",
                                 ml: 1,

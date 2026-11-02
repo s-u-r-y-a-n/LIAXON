@@ -43,10 +43,11 @@ const Clients = () => {
                                         sx={{
                                             width: 60,
                                             height: 60,
-                                            bgcolor: idx % 2 === 0 ? "#2563EB" : "#0EA5E9",
+                                            bgcolor: idx % 2 === 0 ? "#D4AF37" : "#0B0B0B",
+                                            color: idx % 2 === 0 ? "#0B0B0B" : "#FFFFFF",
                                             fontWeight: 800,
                                             fontSize: "1.2rem",
-                                            boxShadow: "0 4px 12px rgba(37, 99, 235, 0.2)",
+                                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.25)",
                                         }}
                                     >
                                         {client.initials}
@@ -76,7 +77,7 @@ const Clients = () => {
             <section className="industries-band">
                 <div className="band-container">
                     <div className="band-content">
-                        <HandshakeRoundedIcon sx={{ fontSize: 40, color: "#38BDF8" }} />
+                        <HandshakeRoundedIcon sx={{ fontSize: 40, color: "#D4AF37" }} />
                         <div className="band-text">
                             <h3>Spanning Multiple Industry Sectors</h3>
                             <p>

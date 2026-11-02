@@ -60,6 +60,9 @@ const AdminProfile = () => {
                 ...prev,
                 name: user.name || "",
                 email: user.email || "",
+                currentPassword: "",
+                newPassword: "",
+                confirmPassword: "",
             }));
         }
     }, [user]);
@@ -208,11 +211,11 @@ const AdminProfile = () => {
                     </Typography>
                 </Box>
                 <Chip
-                    icon={<ShieldRoundedIcon />}
+                    icon={<ShieldRoundedIcon sx={{ color: "#0B0B0B !important" }} />}
                     label={user?.role ? `${user.role.toUpperCase()} ACCOUNT` : "ADMIN ACCOUNT"}
                     sx={{
-                        bgcolor: "#0F172A",
-                        color: "#FFFFFF",
+                        bgcolor: "#D4AF37",
+                        color: "#0B0B0B",
                         fontWeight: 700,
                         fontSize: "0.75rem",
                         letterSpacing: "0.05em",
@@ -230,7 +233,31 @@ const AdminProfile = () => {
                 </Alert>
             )}
 
-            <Box component="form" onSubmit={handleSubmit} noValidate className="profile-grid">
+            <Box
+                component="form"
+                onSubmit={handleSubmit}
+                noValidate
+                autoComplete="off"
+                className="profile-grid"
+            >
+                {/* Invisible decoy inputs to prevent browser password managers from auto-populating current password */}
+                <input
+                    type="text"
+                    name="prevent_autofill_username"
+                    style={{ position: "absolute", opacity: 0, height: 0, width: 0, pointerEvents: "none" }}
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    autoComplete="off"
+                />
+                <input
+                    type="password"
+                    name="prevent_autofill_password"
+                    style={{ position: "absolute", opacity: 0, height: 0, width: 0, pointerEvents: "none" }}
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    autoComplete="new-password"
+                />
+
                 {/* 1. Basic Account Information Card */}
                 <Card className="profile-card" elevation={0}>
                     <Box className="card-header-box">
@@ -254,10 +281,11 @@ const AdminProfile = () => {
                             value={formData.name}
                             onChange={handleChange}
                             placeholder="e.g. Surya"
+                            autoComplete="off"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <PersonRoundedIcon sx={{ color: "#94A3B8" }} fontSize="small" />
+                                        <PersonRoundedIcon sx={{ color: "#D4AF37" }} fontSize="small" />
                                     </InputAdornment>
                                 ),
                             }}
@@ -273,10 +301,11 @@ const AdminProfile = () => {
                             onChange={handleChange}
                             placeholder="e.g. admin@liaxon.in"
                             helperText="Used for administrative authentication and access"
+                            autoComplete="off"
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <EmailRoundedIcon sx={{ color: "#94A3B8" }} fontSize="small" />
+                                        <EmailRoundedIcon sx={{ color: "#D4AF37" }} fontSize="small" />
                                     </InputAdornment>
                                 ),
                             }}
@@ -310,9 +339,13 @@ const AdminProfile = () => {
                             fullWidth
                             value={formData.currentPassword}
                             onChange={handleChange}
+                            autoComplete="new-password"
                             placeholder="Enter existing password"
                             helperText="Required only when setting a new password"
                             slotProps={{
+                                htmlInput: {
+                                    autoComplete: "new-password",
+                                },
                                 input: {
                                     endAdornment: (
                                         <InputAdornment position="end">
@@ -339,9 +372,13 @@ const AdminProfile = () => {
                                 fullWidth
                                 value={formData.newPassword}
                                 onChange={handleChange}
+                                autoComplete="new-password"
                                 placeholder="Minimum 6 characters"
                                 helperText="Must be at least 6 characters long"
                                 slotProps={{
+                                    htmlInput: {
+                                        autoComplete: "new-password",
+                                    },
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position="end">
@@ -367,6 +404,7 @@ const AdminProfile = () => {
                                 fullWidth
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
+                                autoComplete="new-password"
                                 placeholder="Re-type new password"
                                 helperText="Re-enter your new password to verify"
                                 error={
@@ -374,6 +412,9 @@ const AdminProfile = () => {
                                     formData.newPassword !== formData.confirmPassword
                                 }
                                 slotProps={{
+                                    htmlInput: {
+                                        autoComplete: "new-password",
+                                    },
                                     input: {
                                         endAdornment: (
                                             <InputAdornment position="end">
@@ -404,7 +445,7 @@ const AdminProfile = () => {
                         disabled={loading}
                         startIcon={
                             loading ? (
-                                <CircularProgress size={18} sx={{ color: "#FFFFFF" }} />
+                                <CircularProgress size={18} sx={{ color: "#0B0B0B" }} />
                             ) : (
                                 <SaveRoundedIcon />
                             )

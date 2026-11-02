@@ -15,7 +15,7 @@ import {
 import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import ShieldRoundedIcon from "@mui/icons-material/ShieldRounded";
+import liaxonLogo from "../../../assets/logo-1.jpeg";
 import { useAuth } from "../../../context/AuthContext.jsx";
 import "./AdminLogin.scss";
 
@@ -78,7 +78,15 @@ const AdminLogin = () => {
             <Card className="login-card" elevation={0}>
                 <Box className="login-header">
                     <Box className="brand-badge">
-                        <ShieldRoundedIcon sx={{ fontSize: 32 }} />
+                        <img
+                            src={liaxonLogo}
+                            alt="Liaxon"
+                            style={{
+                                maxHeight: "48px",
+                                width: "auto",
+                                objectFit: "contain",
+                            }}
+                        />
                     </Box>
                     <Typography component="h1" className="login-title">
                         Admin Portal
@@ -171,7 +179,7 @@ const AdminLogin = () => {
                         className="submit-button"
                     >
                         {loading ? (
-                            <CircularProgress size={24} sx={{ color: "#FFFFFF" }} />
+                            <CircularProgress size={24} sx={{ color: "#0B0B0B" }} />
                         ) : (
                             "Sign In to Dashboard"
                         )}

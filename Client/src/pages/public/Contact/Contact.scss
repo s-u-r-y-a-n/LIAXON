@@ -11,6 +11,7 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
 
     .hero-container {
       @include container;
@@ -25,11 +26,11 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
         padding: 6px 16px;
-        background: rgba(37, 99, 235, 0.2);
-        color: #38bdf8;
+        background: rgba(212, 175, 55, 0.15);
+        color: $color-accent-gold;
         border-radius: $radius-full;
         margin-bottom: 20px;
-        border: 1px solid rgba(56, 189, 248, 0.3);
+        border: 1px solid rgba(212, 175, 55, 0.3);
       }
 
       h1 {
@@ -37,6 +38,7 @@
         font-weight: 900;
         letter-spacing: -0.025em;
         margin-bottom: 12px;
+        color: #ffffff;
 
         @media (max-width: 768px) {
           font-size: 2.2rem;
@@ -45,14 +47,14 @@
 
       .hero-tagline {
         font-size: 1.3rem;
-        color: #38bdf8;
+        color: $color-accent-hover;
         font-weight: 700;
         margin-bottom: 18px;
       }
 
       .hero-lead {
         font-size: 1.15rem;
-        color: #cbd5e1;
+        color: #c0c0c0;
         line-height: 1.65;
         margin: 0;
       }
@@ -82,8 +84,8 @@
         }
 
         .channel-card {
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
+          background: #fafafa;
+          border: 1px solid rgba(0, 0, 0, 0.08);
           border-radius: 14px;
           padding: 28px 22px;
           display: flex;
@@ -95,8 +97,8 @@
             width: 48px;
             height: 48px;
             border-radius: 12px;
-            background: #eff6ff;
-            color: $color-blue-primary;
+            background: rgba(212, 175, 55, 0.12);
+            color: $color-accent-gold;
             @include flex-center;
             margin-bottom: 16px;
           }
@@ -104,8 +106,9 @@
           h3 {
             font-size: 1.15rem;
             font-weight: 800;
-            color: $color-navy;
+            color: #0b0b0b;
             margin: 0 0 8px 0;
+            text-align: center;
           }
 
           .channel-desc {
@@ -114,6 +117,7 @@
             line-height: 1.5;
             margin-bottom: 20px;
             flex-grow: 1;
+            text-align: center;
           }
 
           .channel-links {
@@ -122,7 +126,8 @@
             align-items: center;
             gap: 10px;
             padding-top: 14px;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            width: 100%;
 
             .link-row {
               display: flex;
@@ -130,13 +135,17 @@
               gap: 8px;
               font-size: 0.875rem;
 
+              svg {
+                color: $color-accent-gold;
+              }
+
               a {
-                color: $color-navy;
+                color: #0b0b0b;
                 font-weight: 600;
                 text-decoration: none;
 
                 &:hover {
-                  color: $color-blue-primary;
+                  color: $color-accent-gold;
                   text-decoration: underline;
                 }
               }
@@ -150,7 +159,7 @@
   // 3. Form & Office Coordinates
   .contact-form-section {
     padding: 88px 0 96px;
-    background: $color-bg-light;
+    background: #fafafa;
 
     .contact-container {
       @include container;
@@ -172,7 +181,7 @@
           .info-title {
             font-size: 1.6rem;
             font-weight: 800;
-            color: $color-navy;
+            color: #0b0b0b;
             letter-spacing: -0.01em;
             margin-bottom: 8px;
           }
@@ -192,27 +201,26 @@
 
           .contact-card-box {
             background: #ffffff;
-            border: 1px solid $color-border-light;
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 12px;
             padding: 20px;
             display: flex;
             align-items: center;
             gap: 16px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 
             &:hover {
               transform: translateY(-2px);
               box-shadow: $shadow-md;
-              border-color: $color-blue-primary;
+              border-color: $color-accent-gold;
             }
 
             .icon-circle {
-
               width: 44px;
               height: 44px;
               border-radius: 10px;
-              background: #eff6ff;
-              color: $color-blue-primary;
+              background: rgba(212, 175, 55, 0.12);
+              color: $color-accent-gold;
               @include flex-center;
               flex-shrink: 0;
             }
@@ -223,7 +231,7 @@
                 font-weight: 700;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
-                color: #64748b;
+                color: #777777;
                 margin-bottom: 4px;
                 margin-top: 0;
               }
@@ -232,20 +240,20 @@
               a {
                 font-size: 0.95rem;
                 font-weight: 600;
-                color: $color-navy;
+                color: #0b0b0b;
                 margin: 0;
                 text-decoration: none;
                 line-height: 1.45;
               }
 
               a:hover {
-                color: $color-blue-primary;
+                color: $color-accent-gold;
               }
 
               .sunday-note {
                 display: block;
                 font-size: 0.8rem;
-                color: $color-blue-primary;
+                color: $color-accent-gold;
                 margin-top: 4px;
                 font-weight: 600;
               }
@@ -256,15 +264,15 @@
 
       .contact-form-panel {
         background: #ffffff;
-        border: 1px solid $color-border-light;
+        border: 1px solid rgba(0, 0, 0, 0.08);
         border-radius: 20px;
         padding: 40px 36px;
-        box-shadow: $shadow-md;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 
         .form-heading {
           font-size: 1.5rem;
           font-weight: 800;
-          color: $color-navy;
+          color: #0b0b0b;
           margin-bottom: 8px;
         }
 
@@ -281,16 +289,20 @@
         }
 
         .submit-btn {
-          background: $gradient-hero;
-          color: #ffffff;
+          background: $gradient-gold;
+          color: #0b0b0b;
           padding: 14px 28px;
-          font-weight: 700;
+          font-weight: 800;
           font-size: 1rem;
-          border-radius: 8px;
+          border-radius: 9999px;
           margin-top: 8px;
+          box-shadow: 0 4px 14px rgba(212, 175, 55, 0.25);
+          transition: all 0.2s ease;
 
           &:hover {
-            background: $color-blue-hover;
+            background: #f3e5ab;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-1px);
           }
         }
       }
@@ -302,7 +314,7 @@
     height: 420px;
     width: 100%;
     position: relative;
-    border-top: 1px solid $color-border-light;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 
     iframe {
       width: 100%;

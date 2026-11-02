@@ -1,3 +1,5 @@
+@use "../../../styles/variables" as *;
+
 .admin-profile-page {
   display: flex;
   flex-direction: column;
@@ -17,12 +19,12 @@
       .page-title {
         font-size: 1.6rem;
         font-weight: 800;
-        color: #0f172a;
+        color: #ffffff;
         letter-spacing: -0.02em;
       }
 
       .page-sub {
-        color: #64748b;
+        color: #a0a0a0;
         font-size: 0.9rem;
         margin-top: 4px;
       }
@@ -36,11 +38,11 @@
   }
 
   .profile-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: #141414;
+    border: 1px solid rgba(212, 175, 55, 0.18);
     border-radius: 14px;
     padding: 28px;
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.5);
 
     .card-header-box {
       display: flex;
@@ -48,14 +50,15 @@
       gap: 12px;
       margin-bottom: 20px;
       padding-bottom: 16px;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
       .icon-box {
         width: 40px;
         height: 40px;
         border-radius: 10px;
-        background: #f1f5f9;
-        color: #0f172a;
+        background: rgba(212, 175, 55, 0.12);
+        color: #d4af37;
+        border: 1px solid rgba(212, 175, 55, 0.25);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -65,14 +68,72 @@
         h3 {
           font-size: 1.15rem;
           font-weight: 700;
-          color: #0f172a;
+          color: #ffffff;
           margin: 0;
         }
 
         p {
           font-size: 0.85rem;
-          color: #64748b;
+          color: #a0a0a0;
           margin: 2px 0 0 0;
+        }
+      }
+    }
+
+    .MuiAlert-root {
+      background-color: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: #e0e0e0;
+
+      .MuiAlert-icon {
+        color: #d4af37;
+      }
+    }
+
+    .MuiInputLabel-root {
+      color: #a0a0a0;
+
+      &.Mui-focused {
+        color: #d4af37;
+      }
+    }
+
+    .MuiFormHelperText-root {
+      color: #777777;
+    }
+
+    .MuiOutlinedInput-root {
+      background: #1a1a1a;
+      color: #ffffff;
+      border-radius: 8px;
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px #1a1a1a inset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        caret-color: #ffffff !important;
+        transition: background-color 5000s ease-in-out 0s;
+      }
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      &:hover .MuiOutlinedInput-notchedOutline {
+        border-color: rgba(212, 175, 55, 0.4);
+      }
+
+      &.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #d4af37;
+      }
+
+      .MuiIconButton-root {
+        color: #a0a0a0;
+
+        &:hover {
+          color: #d4af37;
         }
       }
     }
@@ -102,16 +163,18 @@
     padding-top: 8px;
 
     .save-btn {
-      background: #0f172a;
-      color: #ffffff;
+      background: linear-gradient(135deg, #d4af37 0%, #c5a059 100%);
+      color: #0b0b0b;
       padding: 10px 24px;
-      font-weight: 600;
+      font-weight: 700;
       border-radius: 8px;
       text-transform: none;
       font-size: 0.95rem;
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
 
       &:hover {
-        background: #1e293b;
+        background: linear-gradient(135deg, #e5c158 0%, #d4af37 100%);
+        box-shadow: 0 6px 18px rgba(212, 175, 55, 0.45);
       }
     }
   }

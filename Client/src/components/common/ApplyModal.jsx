@@ -174,37 +174,61 @@ const ApplyModal = ({ open, onClose, job }) => {
             onClose={() => !submitting && onClose()}
             maxWidth="md"
             fullWidth
-            PaperProps={{ sx: { borderRadius: 3, p: 1 } }}
+            PaperProps={{
+                sx: {
+                    borderRadius: 3,
+                    p: 1,
+                    backgroundColor: "#141414",
+                    color: "#FFFFFF",
+                    border: "1px solid rgba(212, 175, 55, 0.25)",
+                },
+            }}
         >
             <form onSubmit={handleSubmit}>
                 <DialogTitle sx={{ pb: 1 }}>
-                    <Typography variant="h5" sx={{ fontWeight: 800, color: "#0F172A" }}>
+                    <Typography variant="h5" sx={{ fontWeight: 800, color: "#FFFFFF" }}>
                         Apply for {job?.title || "Position"}
                     </Typography>
                     {job && (
                         <Box sx={{ display: "flex", gap: 1, mt: 0.5, flexWrap: "wrap" }}>
                             {job.domain && (
-                                <Chip label={job.domain} size="small" sx={{ fontWeight: 600 }} />
+                                <Chip
+                                    label={job.domain}
+                                    size="small"
+                                    sx={{
+                                        fontWeight: 600,
+                                        backgroundColor: "rgba(212, 175, 55, 0.15)",
+                                        color: "#D4AF37",
+                                        border: "1px solid rgba(212, 175, 55, 0.3)",
+                                    }}
+                                />
                             )}
                             <Chip
                                 label={job.employmentType || "Full-time"}
                                 size="small"
-                                color="primary"
-                                sx={{ fontWeight: 600 }}
+                                sx={{
+                                    fontWeight: 700,
+                                    backgroundColor: "#D4AF37",
+                                    color: "#0B0B0B",
+                                }}
                             />
                             {job.location && (
                                 <Chip
                                     label={job.location}
                                     size="small"
                                     variant="outlined"
-                                    sx={{ fontWeight: 500 }}
+                                    sx={{
+                                        fontWeight: 500,
+                                        color: "#E0E0E0",
+                                        borderColor: "rgba(255, 255, 255, 0.2)",
+                                    }}
                                 />
                             )}
                         </Box>
                     )}
                 </DialogTitle>
 
-                <DialogContent dividers>
+                <DialogContent dividers sx={{ borderColor: "rgba(255, 255, 255, 0.1)" }}>
                     {errorMessage && (
                         <Alert severity="error" sx={{ mb: 2, borderRadius: 2 }}>
                             {errorMessage}
@@ -276,7 +300,7 @@ const ApplyModal = ({ open, onClose, job }) => {
                         <Box sx={{ mt: 1 }}>
                             <Typography
                                 variant="subtitle2"
-                                sx={{ fontWeight: 700, color: "#1E293B", mb: 1 }}
+                                sx={{ fontWeight: 700, color: "#FFFFFF", mb: 1 }}
                             >
                                 Resume / CV Document <span style={{ color: "#EF4444" }}>*</span>
                             </Typography>
@@ -293,24 +317,24 @@ const ApplyModal = ({ open, onClose, job }) => {
                                 <Box
                                     onClick={() => fileInputRef.current?.click()}
                                     sx={{
-                                        border: "2px dashed #CBD5E1",
+                                        border: "2px dashed rgba(212, 175, 55, 0.35)",
                                         borderRadius: 2.5,
                                         p: 3,
                                         textAlign: "center",
                                         cursor: "pointer",
-                                        backgroundColor: "#F8FAFC",
+                                        backgroundColor: "#1B1B1B",
                                         transition: "all 0.2s ease",
                                         "&:hover": {
-                                            borderColor: "#2563EB",
-                                            backgroundColor: "#EFF6FF",
+                                            borderColor: "#D4AF37",
+                                            backgroundColor: "rgba(212, 175, 55, 0.08)",
                                         },
                                     }}
                                 >
-                                    <CloudUploadRoundedIcon sx={{ fontSize: 38, color: "#2563EB", mb: 1 }} />
-                                    <Typography variant="body1" sx={{ fontWeight: 700, color: "#1E293B" }}>
+                                    <CloudUploadRoundedIcon sx={{ fontSize: 38, color: "#D4AF37", mb: 1 }} />
+                                    <Typography variant="body1" sx={{ fontWeight: 700, color: "#FFFFFF" }}>
                                         Click to upload your Resume / CV
                                     </Typography>
-                                    <Typography variant="caption" sx={{ color: "#64748B", display: "block", mt: 0.5 }}>
+                                    <Typography variant="caption" sx={{ color: "#A0A0A0", display: "block", mt: 0.5 }}>
                                         Supports PDF, DOC, DOCX files up to 10MB
                                     </Typography>
                                 </Box>
@@ -321,19 +345,19 @@ const ApplyModal = ({ open, onClose, job }) => {
                                         alignItems: "center",
                                         justifyContent: "space-between",
                                         p: 1.75,
-                                        border: "1px solid #BFDBFE",
+                                        border: "1px solid rgba(212, 175, 55, 0.3)",
                                         borderRadius: 2,
-                                        backgroundColor: "#EFF6FF",
+                                        backgroundColor: "rgba(212, 175, 55, 0.08)",
                                     }}
                                 >
                                     <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, overflow: "hidden" }}>
-                                        <DescriptionRoundedIcon sx={{ color: "#2563EB", fontSize: 30, flexShrink: 0 }} />
+                                        <DescriptionRoundedIcon sx={{ color: "#D4AF37", fontSize: 30, flexShrink: 0 }} />
                                         <Box sx={{ overflow: "hidden" }}>
                                             <Typography
                                                 variant="body2"
                                                 sx={{
                                                     fontWeight: 700,
-                                                    color: "#0F172A",
+                                                    color: "#FFFFFF",
                                                     textOverflow: "ellipsis",
                                                     overflow: "hidden",
                                                     whiteSpace: "nowrap",
@@ -341,7 +365,7 @@ const ApplyModal = ({ open, onClose, job }) => {
                                             >
                                                 {resumeFile.name}
                                             </Typography>
-                                            <Typography variant="caption" sx={{ color: "#64748B" }}>
+                                            <Typography variant="caption" sx={{ color: "#A0A0A0" }}>
                                                 {formatFileSize(resumeFile.size)}
                                             </Typography>
                                         </Box>
@@ -381,8 +405,8 @@ const ApplyModal = ({ open, onClose, job }) => {
                     </Box>
                 </DialogContent>
 
-                <DialogActions sx={{ p: 2 }}>
-                    <Button onClick={onClose} disabled={submitting} sx={{ color: "#64748B" }}>
+                <DialogActions sx={{ p: 2, borderColor: "rgba(255, 255, 255, 0.1)" }}>
+                    <Button onClick={onClose} disabled={submitting} sx={{ color: "#A0A0A0" }}>
                         Cancel
                     </Button>
                     <Button
@@ -390,10 +414,11 @@ const ApplyModal = ({ open, onClose, job }) => {
                         variant="contained"
                         disabled={submitting || Boolean(successMessage)}
                         sx={{
-                            backgroundColor: "#0F172A",
+                            backgroundColor: "#D4AF37",
+                            color: "#0B0B0B",
                             px: 3,
                             fontWeight: 700,
-                            "&:hover": { backgroundColor: "#1E293B" },
+                            "&:hover": { backgroundColor: "#E5C158" },
                         }}
                     >
                         {submitting ? (
